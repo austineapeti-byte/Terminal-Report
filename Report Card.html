@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living Spec: Terminal Report Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        .spec-card {
+            transition: all 0.3s ease;
+        }
+        .spec-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        /* Hide scrollbar for clean UI */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+    <!-- Chosen Palette: "Academic Stone" -->
+    <!-- Background: Stone-50 (Warm Neutral). Primary: Emerald-800 (Growth/School). Secondary: Stone-600. Accent: Amber-600. -->
+
+    <!-- Application Structure Plan:
+         1. Executive Summary & Vision: Introduces the project goals and target users using interactive cards.
+         2. Workflow Simulator (The Core): A functional 4-step wizard that simulates the software's life cycle (Setup -> Entry -> Comment -> Report). This brings the "Core Features" section to life.
+         3. Data & Tech Blueprint: A visual explorer for the Database Schema and Tech Stack, translating technical tables into visual blocks.
+         4. Footer: Simple copyright.
+
+         Reasoning: This structure prioritizes "Understanding by Doing". Instead of reading about score validation, the user performs it. Instead of imagining the report layout, they see it generated dynamically.
+    -->
+
+    <!-- Visualization & Content Choices:
+         1. User Needs (Cards): Text -> Goal: Organize -> Interactive Cards -> Hover effects -> Clarifies roles.
+         2. Weighting Logic (Doughnut Chart): Data: 40/60 Split -> Goal: Inform -> Chart.js -> Visualizes the grading policy constraints.
+         3. Attendance (Pie Chart): Data: Present/Absent -> Goal: Inform -> Chart.js -> Embedded in the Report Preview.
+         4. Data Model (Grid Layout): Data: Tables/Fields -> Goal: Organize -> Styled HTML Boxes -> Visualizes relationships without Mermaid.
+         5. Workflow Stepper (JS Logic): Data: Workflow Steps -> Goal: Change/Process -> Interactive Tabs -> Demonstrates the linear process.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased selection:bg-emerald-100 selection:text-emerald-900">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl font-bold text-emerald-900 tracking-tight">ReportGen<span class="text-amber-600">.spec</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#vision" class="text-stone-600 hover:text-emerald-800 font-medium text-sm transition-colors">Vision</a>
+                    <a href="#simulation" class="text-stone-600 hover:text-emerald-800 font-medium text-sm transition-colors">Prototype</a>
+                    <a href="#technical" class="text-stone-600 hover:text-emerald-800 font-medium text-sm transition-colors">Architecture</a>
+                </div>
+                <button onclick="window.print()" class="px-4 py-2 bg-stone-800 text-stone-50 text-xs font-bold uppercase tracking-wider rounded hover:bg-stone-700 transition-colors">
+                    Print Spec
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section 1: Executive Summary & Users -->
+    <section id="vision" class="py-16 md:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 max-w-3xl mx-auto">
+            <h1 class="text-4xl md:text-5xl font-bold text-stone-900 mb-6">Automating Academic Excellence</h1>
+            <p class="text-lg text-stone-600 leading-relaxed">
+                The <span class="font-semibold text-emerald-800">God's Dunamis School Terminal Report Generator</span> is designed to replace manual processes with a centralized, accurate system.
+                Our objective is to reduce compilation time, eliminate calculation errors, and ensure professional, standardized output.
+            </p>
+        </div>
+
+        <!-- User Roles Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Admin -->
+            <div class="spec-card bg-white p-8 rounded-xl border border-stone-200 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-stone-100 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                <h3 class="text-xl font-bold text-stone-800 mb-4 relative z-10">System Administrator</h3>
+                <ul class="space-y-3 text-sm text-stone-600 relative z-10">
+                    <li class="flex items-start"><span class="text-emerald-500 mr-2">●</span> User & Role Management</li>
+                    <li class="flex items-start"><span class="text-emerald-500 mr-2">●</span> Class & Subject Setup</li>
+                    <li class="flex items-start"><span class="text-emerald-500 mr-2">●</span> Academic Session Config</li>
+                </ul>
+            </div>
+
+            <!-- Teacher -->
+            <div class="spec-card bg-emerald-50 p-8 rounded-xl border border-emerald-100 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-100 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                <h3 class="text-xl font-bold text-emerald-900 mb-4 relative z-10">Class Teacher</h3>
+                <ul class="space-y-3 text-sm text-emerald-800 relative z-10">
+                    <li class="flex items-start"><span class="text-amber-500 mr-2">●</span> Batch Score Entry (CA/Exam)</li>
+                    <li class="flex items-start"><span class="text-amber-500 mr-2">●</span> Real-time Validation</li>
+                    <li class="flex items-start"><span class="text-amber-500 mr-2">●</span> Personalized Commenting</li>
+                </ul>
+            </div>
+
+            <!-- Headmaster -->
+            <div class="spec-card bg-white p-8 rounded-xl border border-stone-200 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-stone-100 rounded-bl-full -mr-4 -mt-4 transition-transform group-hover:scale-110"></div>
+                <h3 class="text-xl font-bold text-stone-800 mb-4 relative z-10">Headmaster</h3>
+                <ul class="space-y-3 text-sm text-stone-600 relative z-10">
+                    <li class="flex items-start"><span class="text-emerald-500 mr-2">●</span> Review & Approval Dashboard</li>
+                    <li class="flex items-start"><span class="text-emerald-500 mr-2">●</span> Final Administrative Comments</li>
+                    <li class="flex items-start"><span class="text-emerald-500 mr-2">●</span> Batch Printing & Export</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Interactive Simulation (The "Wow" Factor) -->
+    <section id="simulation" class="bg-white border-y border-stone-200 py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+
+                <!-- Intro Column -->
+                <div class="lg:col-span-4">
+                    <h2 class="text-3xl font-bold text-stone-900 mb-6">Workflow Simulation</h2>
+                    <p class="text-stone-600 mb-6">
+                        Experience the core functionality of the proposed system. This interactive prototype demonstrates the flow from
+                        <strong>Session Setup</strong> to <strong>Score Entry</strong>, <strong>Commenting</strong>, and finally <strong>Report Generation</strong>.
+                    </p>
+                    <p class="text-stone-600 mb-6 text-sm">
+                        Use the controls on the right to simulate the actions of different user roles. Note the automatic validation logic (Max 40 for CA, Max 60 for Exam).
+                    </p>
+
+                    <!-- Chart showing grading weight -->
+                    <div class="bg-stone-50 p-6 rounded-xl border border-stone-100">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-stone-500 mb-4 text-center">Grading Policy Logic</h4>
+                        <div class="chart-container" style="height: 200px;">
+                            <canvas id="weightChart"></canvas>
+                        </div>
+                        <p class="text-center text-xs text-stone-400 mt-2">Core logic enforced by Validation Module</p>
+                    </div>
+                </div>
+
+                <!-- Interactive App Container -->
+                <div class="lg:col-span-8">
+                    <div class="bg-stone-900 rounded-2xl shadow-2xl overflow-hidden text-stone-100 flex flex-col min-h-[600px]">
+
+                        <!-- App Header -->
+                        <div class="bg-stone-800 px-6 py-4 flex justify-between items-center border-b border-stone-700">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-amber-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <span class="text-xs font-mono text-stone-400">GDS_Report_System_v1.0.exe</span>
+                        </div>
+
+                        <!-- Stepper -->
+                        <div class="flex border-b border-stone-700 bg-stone-800/50">
+                            <button onclick="setStep(1)" id="step-btn-1" class="flex-1 py-3 text-xs font-bold uppercase tracking-wider border-b-2 border-emerald-500 text-emerald-400 bg-stone-800 transition-colors">1. Setup</button>
+                            <button onclick="setStep(2)" id="step-btn-2" class="flex-1 py-3 text-xs font-bold uppercase tracking-wider border-b-2 border-transparent text-stone-500 hover:text-stone-300 transition-colors">2. Scores</button>
+                            <button onclick="setStep(3)" id="step-btn-3" class="flex-1 py-3 text-xs font-bold uppercase tracking-wider border-b-2 border-transparent text-stone-500 hover:text-stone-300 transition-colors">3. Comment</button>
+                            <button onclick="setStep(4)" id="step-btn-4" class="flex-1 py-3 text-xs font-bold uppercase tracking-wider border-b-2 border-transparent text-stone-500 hover:text-stone-300 transition-colors">4. Preview</button>
+                        </div>
+
+                        <!-- Step Content Area -->
+                        <div class="p-8 flex-1 bg-stone-900 relative">
+
+                            <!-- STEP 1: SETUP -->
+                            <div id="step-1" class="step-content space-y-6">
+                                <div class="bg-stone-800 p-6 rounded border border-stone-700">
+                                    <h3 class="text-xl font-bold mb-4 text-emerald-400">Session Configuration</h3>
+                                    <p class="text-sm text-stone-400 mb-6">System Administrator defines the active context.</p>
+
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block text-xs uppercase text-stone-500 mb-1">Academic Year</label>
+                                            <select id="config-year" class="w-full bg-stone-900 border border-stone-600 rounded p-2 text-sm text-white focus:border-emerald-500 outline-none">
+                                                <option>2024/2025</option>
+                                                <option>2025/2026</option>
+                                            </select>
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs uppercase text-stone-500 mb-1">Current Term</label>
+                                            <select id="config-term" class="w-full bg-stone-900 border border-stone-600 rounded p-2 text-sm text-white focus:border-emerald-500 outline-none">
+                                                <option>First Term</option>
+                                                <option>Second Term</option>
+                                                <option>Third Term</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="mt-8 flex justify-end">
+                                        <button onclick="setStep(2)" class="px-6 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded font-bold text-sm transition-colors">Confirm & Continue &rarr;</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- STEP 2: SCORE ENTRY -->
+                            <div id="step-2" class="step-content hidden space-y-6">
+                                <div class="flex justify-between items-end mb-4">
+                                    <div>
+                                        <h3 class="text-xl font-bold text-emerald-400">Batch Score Entry</h3>
+                                        <p class="text-xs text-stone-400">Class: JHS 1A | Student: <strong>Kwame Mensah</strong></p>
+                                    </div>
+                                    <div class="text-xs text-stone-500 bg-stone-800 px-2 py-1 rounded border border-stone-700">
+                                        Auto-Calc Enabled
+                                    </div>
+                                </div>
+
+                                <div class="overflow-hidden rounded border border-stone-700">
+                                    <table class="w-full text-sm text-left">
+                                        <thead class="bg-stone-800 text-xs uppercase text-stone-400">
+                                            <tr>
+                                                <th class="px-4 py-3">Subject</th>
+                                                <th class="px-4 py-3 text-center">CA (Max 40)</th>
+                                                <th class="px-4 py-3 text-center">Exam (Max 60)</th>
+                                                <th class="px-4 py-3 text-center">Total</th>
+                                                <th class="px-4 py-3 text-center">Grade</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-stone-800">
+                                            <!-- Row 1 -->
+                                            <tr class="bg-stone-900/50">
+                                                <td class="px-4 py-3 font-medium">Mathematics</td>
+                                                <td class="px-4 py-3"><input type="number" id="math-ca" value="35" max="40" class="w-full bg-stone-800 border border-stone-700 rounded p-1 text-center focus:border-emerald-500 outline-none transition-colors" oninput="calculate('math')"></td>
+                                                <td class="px-4 py-3"><input type="number" id="math-exam" value="50" max="60" class="w-full bg-stone-800 border border-stone-700 rounded p-1 text-center focus:border-emerald-500 outline-none transition-colors" oninput="calculate('math')"></td>
+                                                <td class="px-4 py-3 text-center font-bold text-emerald-400" id="math-total">85</td>
+                                                <td class="px-4 py-3 text-center"><span id="math-grade" class="px-2 py-0.5 rounded bg-emerald-900 text-emerald-300 text-xs">A</span></td>
+                                            </tr>
+                                            <!-- Row 2 -->
+                                            <tr class="bg-stone-900/50">
+                                                <td class="px-4 py-3 font-medium">Integrated Science</td>
+                                                <td class="px-4 py-3"><input type="number" id="sci-ca" value="28" max="40" class="w-full bg-stone-800 border border-stone-700 rounded p-1 text-center focus:border-emerald-500 outline-none transition-colors" oninput="calculate('sci')"></td>
+                                                <td class="px-4 py-3"><input type="number" id="sci-exam" value="42" max="60" class="w-full bg-stone-800 border border-stone-700 rounded p-1 text-center focus:border-emerald-500 outline-none transition-colors" oninput="calculate('sci')"></td>
+                                                <td class="px-4 py-3 text-center font-bold text-emerald-400" id="sci-total">70</td>
+                                                <td class="px-4 py-3 text-center"><span id="sci-grade" class="px-2 py-0.5 rounded bg-amber-900 text-amber-300 text-xs">B</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="error-msg" class="text-red-400 text-xs h-4 font-bold opacity-0 transition-opacity">Error: Value exceeds maximum limit.</div>
+                                <div class="flex justify-end mt-4">
+                                    <button onclick="setStep(3)" class="px-6 py-2 bg-stone-700 hover:bg-stone-600 text-white rounded font-bold text-sm transition-colors">Save & Next &rarr;</button>
+                                </div>
+                            </div>
+
+                            <!-- STEP 3: COMMENTING -->
+                            <div id="step-3" class="step-content hidden space-y-6">
+                                <h3 class="text-xl font-bold text-emerald-400 mb-2">Qualitative Assessment</h3>
+                                <p class="text-sm text-stone-400 mb-4">Select from the "Comment Bank" or type a personalized note.</p>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="space-y-4">
+                                        <label class="block text-xs uppercase text-stone-500">Teacher's Comment</label>
+                                        <div class="space-y-2">
+                                            <button onclick="setComment('Excellent work! Shows strong analytical skills.')" class="w-full text-left p-2 bg-stone-800 hover:bg-stone-700 border border-stone-700 rounded text-xs transition-colors">"Excellent work! Shows strong analytical skills."</button>
+                                            <button onclick="setComment('Good performance, but needs to improve attendance.')" class="w-full text-left p-2 bg-stone-800 hover:bg-stone-700 border border-stone-700 rounded text-xs transition-colors">"Good performance, but needs to improve attendance."</button>
+                                            <button onclick="setComment('Average performance. More effort required next term.')" class="w-full text-left p-2 bg-stone-800 hover:bg-stone-700 border border-stone-700 rounded text-xs transition-colors">"Average performance. More effort required next term."</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs uppercase text-stone-500 mb-1">Editor</label>
+                                        <textarea id="comment-editor" class="w-full h-32 bg-stone-800 border border-stone-700 rounded p-3 text-sm focus:border-emerald-500 outline-none resize-none" placeholder="Select a comment or type here..."></textarea>
+                                    </div>
+                                </div>
+                                <div class="flex justify-end mt-4">
+                                    <button onclick="setStep(4); generateReport();" class="px-6 py-2 bg-stone-700 hover:bg-stone-600 text-white rounded font-bold text-sm transition-colors">Finalize & Preview &rarr;</button>
+                                </div>
+                            </div>
+
+                            <!-- STEP 4: PREVIEW -->
+                            <div id="step-4" class="step-content hidden h-full flex flex-col">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-xl font-bold text-emerald-400">Report Preview</h3>
+                                    <button class="flex items-center gap-2 text-xs bg-emerald-600 px-3 py-1 rounded hover:bg-emerald-500 transition-colors">
+                                        <span>Download PDF</span>
+                                    </button>
+                                </div>
+
+                                <!-- The Paper -->
+                                <div class="bg-white text-stone-900 p-6 rounded shadow-lg flex-1 overflow-auto text-xs font-serif leading-relaxed relative">
+                                    <!-- Header -->
+                                    <div class="text-center border-b-2 border-stone-900 pb-4 mb-4">
+                                        <h1 class="text-lg font-bold uppercase tracking-widest text-emerald-900">God's Dunamis School</h1>
+                                        <p class="italic text-stone-500 text-[10px]">Excellence, Integrity, Service</p>
+                                        <div class="mt-2 font-sans font-bold bg-stone-100 inline-block px-2 py-0.5 rounded text-[10px]">TERMINAL REPORT SHEET</div>
+                                    </div>
+
+                                    <!-- Student Info -->
+                                    <div class="flex justify-between mb-4 font-sans text-[10px]">
+                                        <div>
+                                            <p><strong>Name:</strong> Kwame Mensah</p>
+                                            <p><strong>ID:</strong> GDS/24/042</p>
+                                        </div>
+                                        <div class="text-right">
+                                            <p><strong>Class:</strong> JHS 1A</p>
+                                            <p><strong>Term:</strong> <span id="report-term">First Term</span>, <span id="report-year">2024/2025</span></p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Score Grid -->
+                                    <table class="w-full border-collapse border border-stone-300 font-sans mb-4">
+                                        <thead class="bg-stone-100">
+                                            <tr>
+                                                <th class="border border-stone-300 p-1 text-left">Subject</th>
+                                                <th class="border border-stone-300 p-1 text-center">CA (40)</th>
+                                                <th class="border border-stone-300 p-1 text-center">Exam (60)</th>
+                                                <th class="border border-stone-300 p-1 text-center">Total</th>
+                                                <th class="border border-stone-300 p-1 text-center">Grade</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-stone-300 p-1">Mathematics</td>
+                                                <td id="rep-math-ca" class="border border-stone-300 p-1 text-center">35</td>
+                                                <td id="rep-math-exam" class="border border-stone-300 p-1 text-center">50</td>
+                                                <td id="rep-math-tot" class="border border-stone-300 p-1 text-center font-bold">85</td>
+                                                <td id="rep-math-grd" class="border border-stone-300 p-1 text-center">A</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-stone-300 p-1">Integ. Science</td>
+                                                <td id="rep-sci-ca" class="border border-stone-300 p-1 text-center">28</td>
+                                                <td id="rep-sci-exam" class="border border-stone-300 p-1 text-center">42</td>
+                                                <td id="rep-sci-tot" class="border border-stone-300 p-1 text-center font-bold">70</td>
+                                                <td id="rep-sci-grd" class="border border-stone-300 p-1 text-center">B</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <!-- Charts & Comments in Report -->
+                                    <div class="grid grid-cols-3 gap-4 mb-4">
+                                        <div class="col-span-1 flex flex-col items-center justify-center border border-stone-200 rounded p-2 bg-stone-50">
+                                            <p class="text-[9px] font-sans font-bold uppercase mb-1">Attendance</p>
+                                            <div class="w-16 h-16 relative">
+                                                <canvas id="attendanceChart"></canvas>
+                                            </div>
+                                            <p class="text-[9px] mt-1 text-stone-500">5 Days Absent</p>
+                                        </div>
+                                        <div class="col-span-2">
+                                            <p class="mb-2 text-[10px] font-sans"><strong class="uppercase text-emerald-800">Class Teacher's Remarks:</strong><br><span id="rep-comment" class="italic">Excellent work...</span></p>
+                                            <p class="text-[10px] font-sans"><strong class="uppercase text-emerald-800">Headmaster's Remarks:</strong><br><span class="italic">Promoted to next class. Good conduct shown.</span></p>
+                                        </div>
+                                    </div>
+
+                                    <!-- Footer Sig -->
+                                    <div class="mt-4 pt-4 border-t border-stone-300 flex justify-between text-[9px] font-sans text-stone-400 uppercase">
+                                        <span>Teacher Sig: ...................</span>
+                                        <span>Principal Sig: ...................</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Technical Specs -->
+    <section id="technical" class="py-16 bg-stone-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-stone-900 mb-8 text-center">System Architecture</h2>
+            <p class="text-center text-stone-600 max-w-2xl mx-auto mb-12">
+                The system relies on a relational database structure to ensure data integrity across academic years and a modern web stack for responsiveness.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Data Model Visualization -->
+                <div>
+                    <h3 class="text-lg font-bold text-stone-700 mb-4 flex items-center">
+                        <span class="w-2 h-6 bg-amber-500 rounded mr-3"></span>
+                        Relational Schema
+                    </h3>
+                    <div class="space-y-4 font-mono text-xs">
+                        <!-- Table: Students -->
+                        <div class="bg-white border border-stone-300 rounded-lg shadow-sm">
+                            <div class="bg-stone-50 px-4 py-2 border-b border-stone-200 font-bold flex justify-between text-stone-700">
+                                <span>STUDENTS</span>
+                                <span class="text-amber-600">PK: student_id</span>
+                            </div>
+                            <div class="p-4 space-y-2 text-stone-600">
+                                <div class="flex justify-between"><span>first_name</span> <span class="text-stone-400">String</span></div>
+                                <div class="flex justify-between"><span>current_class_id</span> <span class="text-emerald-600">FK -> Classes</span></div>
+                                <div class="flex justify-between"><span>date_of_birth</span> <span class="text-stone-400">Date</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Connector -->
+                        <div class="flex justify-center h-4 relative">
+                            <div class="absolute w-px h-full bg-stone-300"></div>
+                        </div>
+
+                        <!-- Table: Scores -->
+                        <div class="bg-white border border-stone-300 rounded-lg shadow-sm">
+                            <div class="bg-stone-50 px-4 py-2 border-b border-stone-200 font-bold flex justify-between text-stone-700">
+                                <span>SCORES</span>
+                                <span class="text-amber-600">PK: score_id</span>
+                            </div>
+                            <div class="p-4 space-y-2 text-stone-600">
+                                <div class="flex justify-between"><span>student_id</span> <span class="text-emerald-600">FK -> Students</span></div>
+                                <div class="flex justify-between"><span>subject_id</span> <span class="text-emerald-600">FK -> Subjects</span></div>
+                                <div class="flex justify-between"><span>ca_score</span> <span class="text-stone-400">Float (Max 40)</span></div>
+                                <div class="flex justify-between"><span>exam_score</span> <span class="text-stone-400">Float (Max 60)</span></div>
+                                <div class="flex justify-between bg-emerald-50 p-1 -mx-1 rounded"><span>total_score</span> <span class="text-emerald-700 font-bold">Derived</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tech Stack -->
+                <div>
+                    <h3 class="text-lg font-bold text-stone-700 mb-4 flex items-center">
+                        <span class="w-2 h-6 bg-emerald-500 rounded mr-3"></span>
+                        Technology Stack
+                    </h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg border border-stone-200 shadow-sm hover:border-emerald-500 transition-colors">
+                            <div class="text-xs font-bold uppercase text-stone-400 mb-1">Frontend</div>
+                            <div class="font-bold text-lg text-stone-800">React / Angular</div>
+                            <p class="text-xs text-stone-500 mt-2">Responsive UI for grid-based data entry.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-stone-200 shadow-sm hover:border-emerald-500 transition-colors">
+                            <div class="text-xs font-bold uppercase text-stone-400 mb-1">Backend</div>
+                            <div class="font-bold text-lg text-stone-800">Node.js</div>
+                            <p class="text-xs text-stone-500 mt-2">Express framework for RESTful API logic.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-stone-200 shadow-sm hover:border-emerald-500 transition-colors">
+                            <div class="text-xs font-bold uppercase text-stone-400 mb-1">Database</div>
+                            <div class="font-bold text-lg text-stone-800">PostgreSQL</div>
+                            <p class="text-xs text-stone-500 mt-2">Robust relational data integrity.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-stone-200 shadow-sm hover:border-emerald-500 transition-colors">
+                            <div class="text-xs font-bold uppercase text-stone-400 mb-1">Reporting</div>
+                            <div class="font-bold text-lg text-stone-800">Puppeteer / jsPDF</div>
+                            <p class="text-xs text-stone-500 mt-2">Pixel-perfect PDF generation from HTML.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-8 border-t border-stone-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm">&copy; 2024 Software Design Specification - Prototype v1.0</p>
+        </div>
+    </footer>
+
+    <!-- JS Logic -->
+    <script>
+        // State
+        let currentStep = 1;
+        let subjects = {
+            'math': { ca: 35, exam: 50, total: 85, grade: 'A' },
+            'sci': { ca: 28, exam: 42, total: 70, grade: 'B' }
+        };
+
+        // Step Navigation
+        function setStep(step) {
+            // UI Button Updates
+            for(let i=1; i<=4; i++) {
+                const btn = document.getElementById(`step-btn-${i}`);
+                const content = document.getElementById(`step-${i}`);
+
+                if (i === step) {
+                    btn.classList.remove('border-transparent', 'text-stone-500', 'hover:text-stone-300');
+                    btn.classList.add('border-emerald-500', 'text-emerald-400', 'bg-stone-800');
+                    content.classList.remove('hidden');
+                } else {
+                    btn.classList.add('border-transparent', 'text-stone-500', 'hover:text-stone-300');
+                    btn.classList.remove('border-emerald-500', 'text-emerald-400', 'bg-stone-800');
+                    content.classList.add('hidden');
+                }
+            }
+            currentStep = step;
+            if(step === 4) initAttendanceChart(); // Render chart only when visible
+        }
+
+        // Score Calculation Logic (Core Feature)
+        function calculate(sub) {
+            const caInput = document.getElementById(`${sub}-ca`);
+            const examInput = document.getElementById(`${sub}-exam`);
+            const totalDisplay = document.getElementById(`${sub}-total`);
+            const gradeDisplay = document.getElementById(`${sub}-grade`);
+            const errorMsg = document.getElementById('error-msg');
+
+            let ca = parseFloat(caInput.value) || 0;
+            let exam = parseFloat(examInput.value) || 0;
+            let hasError = false;
+
+            // Validation (Max 40/60)
+            if(ca > 40) {
+                caInput.classList.add('border-red-500', 'text-red-500');
+                hasError = true;
+            } else {
+                caInput.classList.remove('border-red-500', 'text-red-500');
+            }
+
+            if(exam > 60) {
+                examInput.classList.add('border-red-500', 'text-red-500');
+                hasError = true;
+            } else {
+                examInput.classList.remove('border-red-500', 'text-red-500');
+            }
+
+            errorMsg.style.opacity = hasError ? "1" : "0";
+
+            // Calculation
+            let total = ca + exam;
+            totalDisplay.textContent = total;
+
+            // Grade Logic (Standard Key)
+            let grade = 'F';
+            let colorClass = 'bg-red-900 text-red-300';
+
+            if (total >= 80) { grade = 'A'; colorClass = 'bg-emerald-900 text-emerald-300'; }
+            else if (total >= 70) { grade = 'B'; colorClass = 'bg-amber-900 text-amber-300'; }
+            else if (total >= 60) { grade = 'C'; colorClass = 'bg-stone-700 text-stone-300'; }
+            else if (total >= 50) { grade = 'D'; colorClass = 'bg-stone-700 text-stone-400'; }
+
+            gradeDisplay.textContent = grade;
+            gradeDisplay.className = `px-2 py-0.5 rounded text-xs ${colorClass}`;
+
+            // Save to state
+            subjects[sub] = { ca, exam, total, grade };
+        }
+
+        // Comment Logic
+        function setComment(text) {
+            document.getElementById('comment-editor').value = text;
+        }
+
+        // Report Generation Logic
+        function generateReport() {
+            // Transfer Config
+            document.getElementById('report-year').textContent = document.getElementById('config-year').value;
+            document.getElementById('report-term').textContent = document.getElementById('config-term').value;
+
+            // Transfer Scores
+            ['math', 'sci'].forEach(sub => {
+                document.getElementById(`rep-${sub}-ca`).textContent = subjects[sub].ca;
+                document.getElementById(`rep-${sub}-exam`).textContent = subjects[sub].exam;
+                document.getElementById(`rep-${sub}-tot`).textContent = subjects[sub].total;
+                document.getElementById(`rep-${sub}-grd`).textContent = subjects[sub].grade;
+            });
+
+            // Transfer Comment
+            const comment = document.getElementById('comment-editor').value || "No comment provided.";
+            document.getElementById('rep-comment').textContent = comment;
+        }
+
+        // Chart Initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            // Weight Chart (Doughnut)
+            const ctxWeight = document.getElementById('weightChart').getContext('2d');
+            new Chart(ctxWeight, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Examination Score', 'Continuous Assessment (CA)'],
+                    datasets: [{
+                        data: [60, 40],
+                        backgroundColor: ['#10b981', '#f59e0b'], // Emerald, Amber
+                        borderWidth: 0,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 10 } } }
+                    }
+                }
+            });
+        });
+
+        // Attendance Chart (Pie - inside Report)
+        let attendanceChartInstance = null;
+        function initAttendanceChart() {
+            if(attendanceChartInstance) return; // Prevent duplicates
+            const ctxAtt = document.getElementById('attendanceChart').getContext('2d');
+            attendanceChartInstance = new Chart(ctxAtt, {
+                type: 'pie',
+                data: {
+                    labels: ['Present', 'Absent'],
+                    datasets: [{
+                        data: [65, 5], // Total 70 days
+                        backgroundColor: ['#d6d3d1', '#78716c'], // Light/Dark Stone
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, tooltip: { enabled: false } }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
