@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>God's Dunamis School - Jesus is our Rock</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- PDF Generation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <!-- Excel Processing Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#1e3a8a',  /* Royal Blue */
+                            gold: '#f59e0b',  /* Amber/Gold */
+                            light: '#f8fafc',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Merriweather', serif; }
+        .hero-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        /* Marquee Animation */
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: block;
+            width: 100%;
+            white-space: nowrap;
+            animation: marquee 20s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+
+        /* Print Styles for Report Card & Broad Sheet */
+        @media print {
+            @page {
+                size: A4 portrait;
+                margin: 10mm;
+            }
+            body {
+                background-color: white !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            /* Hide the other main containers specifically */
+            #public-site, #school-portal {
+                display: none !important;
+            }
+            #report-card-print-area {
+                display: block !important;
+                position: relative !important;
+                width: 100%;
+                left: auto;
+                top: auto;
+                margin: 0;
+                padding: 0;
+            }
+            .report-page {
+                page-break-after: always;
+                padding: 10px 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .broad-sheet-page {
+                width: 100%;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- === PUBLIC WEBSITE CONTENT === -->
+    <div id="public-site">
+        <!-- Top Info Bar -->
+        <div class="bg-brand-blue text-white py-2 text-sm border-b border-white/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-2">
+                <div class="flex items-center gap-4">
+                    <span class="flex items-center gap-2"><i class="fas fa-phone-alt text-brand-gold"></i> 0243320797 / 0245269554</span>
+                    <span class="hidden md:flex items-center gap-2"><i class="fas fa-clock text-brand-gold"></i> Mon - Fri: 7:30 AM - 4:00 PM</span>
+                </div>
+                <div class="flex gap-4">
+                    <a href="#" class="hover:text-brand-gold transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-brand-gold transition-colors"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-brand-gold transition-colors"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scrolling Announcement Bar -->
+        <div class="bg-brand-gold text-brand-blue font-bold py-2 overflow-hidden border-b border-brand-blue/10">
+            <div class="max-w-7xl mx-auto px-4">
+                <div class="animate-marquee">
+                    <span class="inline-flex items-center text-sm md:text-base">
+                        <i class="fas fa-bullhorn mr-3"></i> ANNOUNCEMENT: Admission is still in progress from Creche to JHS 3
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="bg-white sticky top-0 z-50 shadow-md">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-20">
+                    <!-- Logo -->
+                    <div class="flex items-center gap-3">
+                        <div class="w-12 h-12 flex items-center justify-center">
+                            <img src="" class="school-logo-img w-full h-full object-contain drop-shadow-md" alt="Logo">
+                        </div>
+                        <div>
+                            <h1 class="text-xl md:text-2xl font-bold text-brand-blue leading-none tracking-tight">GOD'S DUNAMIS</h1>
+                            <p class="text-xs text-brand-gold font-bold tracking-[0.2em] uppercase mt-1">School</p>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex space-x-8 items-center font-medium text-slate-600">
+                        <a href="#home" class="hover:text-brand-blue transition-colors">Home</a>
+                        <a href="#about" class="hover:text-brand-blue transition-colors">Vision & Mission</a>
+                        <a href="#values" class="hover:text-brand-blue transition-colors">Core Values</a>
+                        <button onclick="togglePortal()" class="px-5 py-2 border-2 border-brand-blue text-brand-blue rounded-full font-bold hover:bg-brand-blue hover:text-white transition-all">Staff Portal</button>
+                        <a href="#contact" class="px-5 py-2.5 bg-brand-gold text-brand-blue rounded-full font-bold hover:bg-yellow-400 transition-all shadow-md transform hover:-translate-y-0.5">Contact Us</a>
+                    </div>
+
+                    <!-- Mobile Menu Button -->
+                    <div class="md:hidden flex items-center">
+                        <button id="mobile-menu-btn" class="text-brand-blue focus:outline-none">
+                            <i class="fas fa-bars text-2xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 absolute w-full shadow-lg z-50">
+                <div class="px-4 pt-2 pb-4 space-y-2 text-center">
+                    <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-blue hover:bg-slate-50">Home</a>
+                    <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-blue hover:bg-slate-50">Vision & Mission</a>
+                    <a href="#values" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-brand-blue hover:bg-slate-50">Core Values</a>
+                    <button onclick="togglePortal()" class="block w-full px-3 py-2 rounded-md text-base font-medium text-brand-blue border border-brand-blue mt-2">Staff Portal</button>
+                    <a href="#contact" class="block px-3 py-2 mt-2 rounded-md text-base font-bold bg-brand-blue text-white">Contact Us</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="relative bg-brand-blue text-white py-24 lg:py-32 overflow-hidden hero-pattern">
+            <div class="absolute inset-0 bg-gradient-to-r from-blue-950 via-blue-900 to-blue-800 opacity-95"></div>
+            <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="inline-block px-4 py-1.5 border border-brand-gold/50 rounded-full mb-6 bg-brand-blue/50 backdrop-blur-sm">
+                    <span class="text-brand-gold font-bold tracking-widest text-xs uppercase"><i class="fas fa-star mr-2"></i>Jesus is our Rock</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                    Raising Disciplined, <br>
+                    <span class="text-brand-gold">God-Fearing</span> & Excellent Learners
+                </h1>
+                <p class="text-lg md:text-xl text-blue-100 mb-10 max-w-3xl mx-auto leading-relaxed">
+                    We provide holistic, Christ-centered education that nurtures spiritual growth and builds strong moral character.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#contact" class="px-8 py-4 bg-brand-gold text-brand-blue font-bold rounded-lg shadow-lg hover:bg-yellow-400 transition-all hover:scale-105">
+                        Enquire Now
+                    </a>
+                    <a href="#about" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-lg hover:bg-white/10 transition-all">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vision & Mission Section -->
+        <section id="about" class="py-20 px-4 bg-white">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-brand-blue">Our Purpose</h2>
+                    <div class="w-20 h-1.5 bg-brand-gold mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Vision -->
+                    <div class="bg-slate-50 p-8 md:p-10 rounded-2xl shadow-lg border-t-8 border-brand-gold relative group hover:-translate-y-2 transition-transform duration-300">
+                        <div class="absolute top-6 right-6 text-brand-gold opacity-10">
+                            <i class="fas fa-eye text-9xl"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center text-brand-gold text-2xl mb-6 shadow-sm">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-brand-blue mb-4">Our Vision</h3>
+                            <p class="text-slate-600 text-lg leading-relaxed">
+                                To raise disciplined, God-fearing and academically excellent learners.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Mission -->
+                    <div class="bg-slate-50 p-8 md:p-10 rounded-2xl shadow-lg border-t-8 border-brand-blue relative group hover:-translate-y-2 transition-transform duration-300">
+                        <div class="absolute top-6 right-6 text-brand-blue opacity-5">
+                            <i class="fas fa-bullseye text-9xl"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-brand-blue text-2xl mb-6 shadow-sm">
+                                <i class="fas fa-scroll"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-brand-blue mb-4">Our Mission</h3>
+                            <p class="text-slate-600 text-lg leading-relaxed">
+                                To provide holistic, Christ-centered education that nurtures spiritual growth, builds strong moral character, promotes academic excellence, and equips learners to fulfill their God-given destinies.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Values Section -->
+        <section id="values" class="py-20 bg-slate-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <span class="text-brand-gold font-bold tracking-widest uppercase text-sm">The Foundation</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mt-2">Core Values</h2>
+                    <p class="mt-4 text-slate-600">Guided by the principles of GOD'S DUNAMIS</p>
+                </div>
+                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all border-l-4 border-brand-blue group">
+                        <div class="flex items-center gap-4"><div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center text-2xl font-black text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-colors">G</div><div><h4 class="font-bold text-gray-800">GODLINESS</h4></div></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all border-l-4 border-brand-gold group">
+                        <div class="flex items-center gap-4"><div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center text-2xl font-black text-brand-gold group-hover:bg-brand-gold group-hover:text-white transition-colors">O</div><div><h4 class="font-bold text-gray-800">ORDER & DISCIPLINE</h4></div></div>
+                    </div>
+                     <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all border-l-4 border-brand-blue group">
+                        <div class="flex items-center gap-4"><div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center text-2xl font-black text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-colors">D</div><div><h4 class="font-bold text-gray-800">DILIGENCE & HARD WORK</h4></div></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-xl transition-all border-l-4 border-brand-gold group">
+                        <div class="flex items-center gap-4"><div class="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center text-2xl font-black text-brand-gold group-hover:bg-brand-gold group-hover:text-white transition-colors">S</div><div><h4 class="font-bold text-gray-800">SERVICE</h4></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Location & Contact -->
+        <section id="contact" class="py-20 px-4 bg-brand-blue text-white relative">
+            <div class="absolute inset-0 bg-blue-900 opacity-50"></div>
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6">Visit Our Campus</h2>
+                        <p class="text-blue-100 mb-8 text-lg">
+                            We are located in a serene environment conducive for learning and character development.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0 text-brand-gold">
+                                    <i class="fas fa-map-marker-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Location</h4>
+                                    <p class="text-blue-100 mt-1">Behind Dangme West Hospital,<br>Shai Osudoku district, Dodowa</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0 text-brand-gold">
+                                    <i class="fas fa-phone-alt text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">Call Us</h4>
+                                    <p class="text-blue-100 mt-1">
+                                        <a href="tel:0243320797" class="hover:text-brand-gold">0243320797</a> / 
+                                        <a href="tel:0245269554" class="hover:text-brand-gold">0245269554</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Placeholder -->
+                    <div class="bg-white p-2 rounded-xl shadow-2xl transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <div class="bg-slate-200 w-full h-80 rounded-lg flex items-center justify-center flex-col text-slate-500">
+                            <i class="fas fa-map-marked-alt text-6xl mb-4 text-slate-400"></i>
+                            <span class="font-semibold">Map View</span>
+                            <span class="text-sm">Dodowa, Ghana</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <div class="mb-6 flex justify-center items-center gap-3">
+                    <img src="" class="school-logo-img w-10 h-10 object-contain drop-shadow-md bg-white rounded-full p-1" alt="Logo">
+                    <span class="text-white font-bold text-xl">GOD'S DUNAMIS SCHOOL</span>
+                </div>
+                <p class="mb-8 max-w-lg mx-auto text-sm">
+                    Raising the next generation of leaders through academic excellence and godly character.
+                </p>
+                <div class="border-t border-slate-800 pt-8 text-xs">
+                    &copy; <script>document.write(new Date().getFullYear())</script> God's Dunamis School. All Rights Reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- === SCHOOL PORTAL (SPA) === -->
+    <div id="school-portal" class="fixed inset-0 bg-slate-50 z-[100] hidden overflow-y-auto">
+        <!-- Portal Header -->
+        <div class="bg-brand-blue text-white p-4 shadow-md sticky top-0 z-10 no-print">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <img src="" class="school-logo-img w-8 h-8 object-contain drop-shadow-sm bg-white rounded-full p-0.5" alt="Logo">
+                    <span class="font-bold text-lg">Dunamis Portal</span>
+                    <span id="loading-indicator" class="text-xs bg-white/20 px-2 py-1 rounded hidden"><i class="fas fa-database mr-1"></i>Local Storage</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span id="portal-user-display" class="text-sm text-blue-200"></span>
+                    <button onclick="togglePortal()" class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded text-sm transition-colors">Exit Portal</button>
+                    <button onclick="logout()" id="logout-btn" class="hidden bg-slate-700 hover:bg-slate-600 px-3 py-1 rounded text-sm transition-colors">Logout</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1. LOGIN SCREEN -->
+        <div id="portal-login" class="flex flex-col items-center justify-center min-h-[80vh] px-4">
+            <div class="bg-white p-8 rounded-xl shadow-xl w-full max-w-md border-t-4 border-brand-gold">
+                <h2 class="text-2xl font-bold text-brand-blue mb-2 text-center">Portal Login</h2>
+                <p class="text-slate-500 text-center mb-6">Enter your credentials to access the system</p>
+                
+                <form onsubmit="handleLogin(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Username</label>
+                        <input type="text" id="username" class="w-full p-2 border border-slate-300 rounded focus:border-brand-blue focus:outline-none" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Password</label>
+                        <input type="password" id="password" class="w-full p-2 border border-slate-300 rounded focus:border-brand-blue focus:outline-none" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Role</label>
+                        <select id="role" class="w-full p-2 border border-slate-300 rounded focus:border-brand-blue focus:outline-none">
+                            <option value="admin">Administrator</option>
+                            <option value="teacher">Teacher</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-brand-blue text-white py-2 rounded font-bold hover:bg-blue-800 transition-colors">Login</button>
+                    <p id="login-error" class="text-red-500 text-sm text-center hidden">Invalid credentials</p>
+                </form>
+            </div>
+        </div>
+
+        <!-- 2. ADMIN DASHBOARD -->
+        <div id="admin-dashboard" class="hidden max-w-7xl mx-auto p-4 md:p-8">
+            <h2 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-2">Administrator Dashboard</h2>
+            
+            <!-- Setup & Config Section -->
+            <div class="grid md:grid-cols-3 gap-6 mb-8">
+                <!-- Manage Classes -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-lg text-brand-blue mb-4"><i class="fas fa-chalkboard mr-2"></i>Manage Classes</h3>
+                    <div class="flex gap-2 mb-4">
+                        <input type="text" id="new-class-name" placeholder="Class Name (e.g., JHS 1)" class="flex-1 p-2 border rounded">
+                        <button onclick="addClass()" class="bg-green-600 text-white px-3 rounded hover:bg-green-700">Add</button>
+                    </div>
+                    <ul id="admin-class-list" class="space-y-2 max-h-48 overflow-y-auto"></ul>
+                </div>
+
+                <!-- Manage Subjects -->
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 class="font-bold text-lg text-brand-blue mb-4"><i class="fas fa-book mr-2"></i>Manage Subjects</h3>
+                    <div class="flex gap-2 mb-4">
+                        <input type="text" id="new-subject-name" placeholder="Subject Name" class="flex-1 p-2 border rounded">
+                        <button onclick="addSubject()" class="bg-green-600 text-white px-3 rounded hover:bg-green-700">Add</button>
+                    </div>
+                    <ul id="admin-subject-list" class="space-y-2 max-h-48 overflow-y-auto"></ul>
+                </div>
+
+                <!-- Manage Teachers -->
+                <div class="bg-white p-6 rounded-lg shadow-md md:col-span-1">
+                    <h3 class="font-bold text-lg text-brand-blue mb-4"><i class="fas fa-user-tie mr-2"></i>Manage Teachers</h3>
+                    <div class="space-y-2 mb-4">
+                        <input type="text" id="teacher-name" placeholder="Teacher Name" class="w-full p-2 border rounded">
+                        <input type="text" id="teacher-username" placeholder="Username" class="w-full p-2 border rounded">
+                        <input type="password" id="teacher-password" placeholder="Password" class="w-full p-2 border rounded">
+                        <select id="teacher-class-assign" class="w-full p-2 border rounded">
+                            <option value="">Assign Class...</option>
+                        </select>
+                        <button onclick="addTeacher()" class="w-full bg-brand-gold text-brand-blue font-bold py-2 rounded">Create Teacher</button>
+                    </div>
+                    <ul id="admin-teacher-list" class="space-y-2 max-h-48 overflow-y-auto"></ul>
+                </div>
+            </div>
+
+            <!-- Term Settings (Admin) -->
+            <div id="admin-term-settings" class="bg-white p-6 rounded-lg shadow-md border-t-4 border-purple-600 mb-8">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Student Management & Reports Section -->
+            <div class="bg-white p-6 rounded-lg shadow-md border-t-4 border-brand-gold">
+                <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+                    <h3 class="font-bold text-xl text-brand-blue"><i class="fas fa-users mr-2"></i>Class Reports & Student Management</h3>
+                    <div class="flex gap-4 mt-4 md:mt-0">
+                        <select id="admin-report-class-select" class="p-2 border rounded border-brand-blue" onchange="loadAdminStudentList()">
+                            <option value="">Select a Class to View...</option>
+                        </select>
+                        <div class="flex gap-2">
+                            <button onclick="openTermComparison()" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700"><i class="fas fa-chart-line mr-2"></i>Compare Terms</button>
+                            <button onclick="printBroadSheet()" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"><i class="fas fa-list-ol mr-2"></i>Broad Sheet</button>
+                            <button onclick="downloadBatchPDF()" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"><i class="fas fa-file-pdf mr-2"></i>Save PDF</button>
+                            <button onclick="printBatchReports()" class="bg-brand-blue text-white px-4 py-2 rounded hover:bg-blue-800"><i class="fas fa-print mr-2"></i>Print All</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="admin-student-view" class="hidden">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="font-bold text-lg" id="admin-class-title"></h4>
+                        <div class="flex gap-2">
+                            <button onclick="openMasterMarkSheet()" class="bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700"><i class="fas fa-table mr-2"></i>Class Mark Sheet</button>
+                            <button onclick="openImportModal()" class="bg-emerald-600 text-white px-4 py-2 rounded text-sm hover:bg-emerald-700"><i class="fas fa-file-excel mr-2"></i>Import Excel</button>
+                            <button onclick="openStudentModal()" class="bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700"><i class="fas fa-plus mr-2"></i>Add Student</button>
+                        </div>
+                    </div>
+                    <table class="w-full border">
+                        <thead class="bg-slate-100">
+                            <tr>
+                                <th class="p-2 text-left">Student Name</th>
+                                <th class="p-2 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-student-list-body">
+                            <!-- Students injected here -->
+                        </tbody>
+                    </table>
+                </div>
+                <p id="admin-select-msg" class="text-slate-500 text-center py-8">Please select a class above to view students and generate reports.</p>
+            </div>
+        </div>
+
+        <!-- 3. TEACHER DASHBOARD -->
+        <div id="teacher-dashboard" class="hidden max-w-7xl mx-auto p-4 md:p-8 no-print">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-6 border-b pb-2 gap-4">
+                <div>
+                    <h2 class="text-2xl font-bold text-slate-800">Teacher Dashboard</h2>
+                    <p class="text-slate-500">Class: <span id="teacher-class-display" class="font-bold text-brand-blue"></span></p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="manageClassSubjects(currentUser.classId)" class="bg-slate-200 text-slate-800 font-bold px-4 py-2 rounded hover:bg-slate-300 shadow"><i class="fas fa-book mr-2"></i>Manage Subjects</button>
+                    <button onclick="openMasterMarkSheet()" class="bg-blue-600 text-white font-bold px-4 py-2 rounded hover:bg-blue-700 shadow"><i class="fas fa-table mr-2"></i>Enter Class Marks</button>
+                    <button onclick="openTermComparison()" class="bg-purple-600 text-white font-bold px-4 py-2 rounded hover:bg-purple-700 shadow"><i class="fas fa-chart-line mr-2"></i>Compare Terms</button>
+                    <button onclick="printBroadSheet()" class="bg-indigo-600 text-white font-bold px-4 py-2 rounded hover:bg-indigo-700 shadow"><i class="fas fa-list-ol mr-2"></i>Broad Sheet</button>
+                    <button onclick="downloadBatchPDF()" class="bg-red-600 text-white font-bold px-4 py-2 rounded hover:bg-red-700 shadow"><i class="fas fa-file-pdf mr-2"></i>Save Class PDF</button>
+                    <button onclick="printBatchReports()" class="bg-brand-gold text-brand-blue font-bold px-4 py-2 rounded hover:bg-yellow-400 shadow"><i class="fas fa-print mr-2"></i>Print Class Reports</button>
+                    <button onclick="openImportModal()" class="bg-emerald-600 text-white px-4 py-2 rounded font-bold hover:bg-emerald-700 shadow"><i class="fas fa-file-excel mr-2"></i>Import Excel</button>
+                    <button onclick="openStudentModal()" class="bg-brand-blue text-white px-4 py-2 rounded hover:bg-blue-800 shadow"><i class="fas fa-plus mr-2"></i>New Student</button>
+                </div>
+            </div>
+
+            <!-- Term Settings (Teacher) -->
+            <div id="teacher-term-settings" class="bg-white p-6 rounded-lg shadow-md border-t-4 border-purple-600 mb-8">
+                <!-- Injected via JS -->
+            </div>
+
+            <div class="bg-white rounded-lg shadow overflow-hidden">
+                <table class="w-full">
+                    <thead class="bg-slate-100">
+                        <tr>
+                            <th class="p-3 text-left">Student Name</th>
+                            <th class="p-3 text-left">Status</th>
+                            <th class="p-3 text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teacher-student-list">
+                        <!-- Student list goes here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 4. ADD STUDENT MODAL -->
+        <div id="add-student-modal" class="hidden fixed inset-0 bg-black/50 z-[120] flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+                <h3 class="text-xl font-bold text-brand-blue mb-4">Add New Student</h3>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Student Full Name</label>
+                    <input type="text" id="new-student-name-input" class="w-full p-2 border border-slate-300 rounded focus:border-brand-blue focus:outline-none" placeholder="e.g. John Doe">
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button onclick="closeAddStudentModal()" class="px-4 py-2 text-slate-600 hover:bg-slate-100 rounded">Cancel</button>
+                    <button onclick="submitNewStudent()" class="px-4 py-2 bg-brand-blue text-white rounded hover:bg-blue-800 font-bold">Add Student</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4B. IMPORT STUDENTS MODAL -->
+        <div id="import-student-modal" class="hidden fixed inset-0 bg-black/50 z-[120] flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
+                <h3 class="text-xl font-bold text-brand-blue mb-2">Import from Excel</h3>
+                <p class="text-sm text-slate-500 mb-4">Upload an Excel (.xlsx, .xls) or CSV file. Please ensure the column containing the student names is titled <strong>"Name"</strong>.</p>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Select File</label>
+                    <input type="file" id="import-file-input" accept=".xlsx, .xls, .csv" class="w-full p-2 border border-slate-300 rounded focus:border-brand-blue focus:outline-none">
+                </div>
+                <div class="flex justify-end gap-2">
+                    <button onclick="closeImportModal()" class="px-4 py-2 text-slate-600 hover:bg-slate-100 rounded">Cancel</button>
+                    <button onclick="processImport()" class="px-4 py-2 bg-emerald-600 text-white rounded hover:bg-emerald-700 font-bold">Import Students</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. SUBJECT ASSIGNMENT MODAL -->
+        <div id="subject-assignment-modal" class="hidden fixed inset-0 bg-black/50 z-[120] flex items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-lg flex flex-col max-h-[80vh]">
+                <h3 class="text-xl font-bold text-brand-blue mb-2">Assign Subjects</h3>
+                <p class="text-slate-500 mb-4 text-sm">Select subjects applicable to <span id="assign-class-name" class="font-bold"></span></p>
+                
+                <div class="flex-1 overflow-y-auto mb-4 border p-2 rounded bg-slate-50">
+                    <div id="subject-checkbox-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <!-- Checkboxes injected here -->
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-2 pt-2 border-t">
+                    <button onclick="closeSubjectModal()" class="px-4 py-2 text-slate-600 hover:bg-slate-100 rounded">Cancel</button>
+                    <button onclick="saveClassSubjects()" class="px-4 py-2 bg-brand-blue text-white rounded hover:bg-blue-800 font-bold">Save Assignments</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. MASTER MARK SHEET MODAL -->
+        <div id="master-mark-sheet-modal" class="hidden fixed inset-0 bg-black/50 z-[120] flex items-center justify-center p-4 overflow-y-auto">
+            <div class="bg-white w-full max-w-[98vw] rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+                <div class="p-4 bg-brand-blue text-white flex justify-between items-center">
+                    <h3 class="font-bold text-lg">Class Mark Sheet: <span id="master-mark-class-name"></span> (<span id="master-mark-term-name"></span>)</h3>
+                    <button onclick="closeMasterMarkSheet()" class="text-white hover:text-brand-gold"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                
+                <div class="p-0 overflow-auto flex-1 bg-slate-50 relative" id="master-mark-table-container">
+                    <!-- Table injected here -->
+                </div>
+
+                <div class="p-4 bg-slate-100 border-t flex justify-end gap-3">
+                    <button onclick="closeMasterMarkSheet()" class="px-6 py-2 text-slate-600 hover:bg-slate-200 rounded font-bold">Cancel</button>
+                    <button onclick="saveMasterMarks()" class="bg-green-600 text-white px-6 py-2 rounded font-bold hover:bg-green-700 shadow-md">Save All Marks</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. GRADING & REPORT MODAL -->
+        <div id="grading-modal" class="hidden fixed inset-0 bg-black/50 z-[110] flex items-center justify-center p-4 overflow-y-auto">
+            <div class="bg-white w-full max-w-4xl rounded-xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+                <div class="p-4 bg-brand-blue text-white flex justify-between items-center">
+                    <h3 class="font-bold text-lg">Grading: <span id="grading-student-name"></span> (<span id="grading-term-name"></span>)</h3>
+                    <button onclick="closeGradingModal()" class="text-white hover:text-brand-gold"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                
+                <div class="p-6 overflow-y-auto flex-1">
+                    <!-- Academic Scores -->
+                    <div id="academic-section">
+                        <h4 class="font-bold text-slate-700 mb-4 border-b pb-1">Academic Performance</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead>
+                                    <tr class="bg-slate-50" id="grading-table-head">
+                                        <!-- Header injected via JS -->
+                                    </tr>
+                                </thead>
+                                <tbody id="grading-subjects-body">
+                                    <!-- Subjects rows injected here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Attendance Section -->
+                    <div class="mt-6 bg-slate-100 p-4 rounded border border-slate-200">
+                        <h4 class="font-bold text-slate-700 mb-2 border-b pb-1">Attendance</h4>
+                        <div class="flex gap-4 items-center">
+                             <div class="flex-1">
+                                <label class="block text-xs font-bold text-slate-600">Times School Opened</label>
+                                <input type="number" id="grading-days-opened" class="w-full p-2 border rounded bg-slate-200 text-slate-500" readonly>
+                             </div>
+                             <div class="flex-1">
+                                <label class="block text-xs font-bold text-slate-600">Times Present</label>
+                                <input type="number" id="grading-days-present" class="w-full p-2 border rounded focus:border-brand-blue bg-white">
+                             </div>
+                        </div>
+                    </div>
+
+                    <!-- Psychomotor -->
+                    <div id="psychomotor-section" class="mt-6 hidden">
+                        <h4 class="font-bold text-slate-700 mb-4 border-b pb-1">Psychomotor Development</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="psychomotor-inputs">
+                            <!-- Inputs injected here -->
+                        </div>
+                    </div>
+
+                    <!-- General Remarks -->
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Class Teacher's Remark</label>
+                            <select id="class-teacher-remark" class="w-full p-2 border rounded">
+                                <option value="">Select Remark...</option>
+                                <option>Excellent performance, keep it up.</option>
+                                <option>Very Good, shows great potential.</option>
+                                <option>Good work, but can do better.</option>
+                                <option>Average performance, needs more study.</option>
+                                <option>Below average, please sit up.</option>
+                                <option>Hardworking but easily distracted.</option>
+                                <option>Steady progress made this term.</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1">Head Teacher's Remark</label>
+                            <select id="head-teacher-remark" class="w-full p-2 border rounded">
+                                <option value="">Select Remark...</option>
+                                <option>Promoted to next class.</option>
+                                <option>Promoted on trial.</option>
+                                <option>Repeated.</option>
+                                <option>Outstanding Result.</option>
+                                <option>Excellent performance! Keep it up.</option>
+                                <option>Good Improvement shown.</option>
+                                <option>Satisfactory performance.</option>
+                                <option>More effort needed next term.</option>
+                                <option>Results are below expectation.</option>
+                                <option>Parent's attention needed.</option>
+                                <option>Graduated.</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-4 bg-slate-50 border-t flex justify-end gap-3">
+                    <button onclick="saveGrades()" class="bg-brand-blue text-white px-6 py-2 rounded font-bold hover:bg-blue-800">Save & Close</button>
+                    <button onclick="downloadSinglePDF()" class="bg-red-600 text-white px-6 py-2 rounded font-bold hover:bg-red-700"><i class="fas fa-file-pdf mr-2"></i>Save PDF</button>
+                    <button onclick="printSingleReport()" class="bg-brand-gold text-brand-blue px-6 py-2 rounded font-bold hover:bg-yellow-400"><i class="fas fa-print mr-2"></i>Print Report</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. COMPARE TERMS MODAL -->
+        <div id="compare-terms-modal" class="hidden fixed inset-0 bg-black/50 z-[120] flex items-center justify-center p-4 overflow-y-auto">
+            <div class="bg-white w-full max-w-4xl rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+                <div class="p-4 bg-purple-600 text-white flex justify-between items-center">
+                    <h3 class="font-bold text-lg">Term Comparison: <span id="compare-terms-class-name"></span></h3>
+                    <button onclick="closeTermComparison()" class="text-white hover:text-purple-200"><i class="fas fa-times text-xl"></i></button>
+                </div>
+                
+                <div class="p-0 overflow-auto flex-1 bg-slate-50" id="compare-terms-table-container">
+                    <!-- Table injected here -->
+                </div>
+
+                <div class="p-4 bg-slate-100 border-t flex justify-end gap-3">
+                    <button onclick="closeTermComparison()" class="px-6 py-2 text-slate-600 hover:bg-slate-200 rounded font-bold">Close</button>
+                    <button onclick="printTermComparison()" class="bg-purple-600 text-white px-6 py-2 rounded font-bold hover:bg-purple-700 shadow-md"><i class="fas fa-print mr-2"></i>Print Comparison</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 9. PRINTABLE REPORT CARD TEMPLATE -->
+    <div id="report-card-print-area" class="hidden bg-white max-w-[210mm] mx-auto p-4">
+        <!-- This area will be populated dynamically -->
+    </div>
+
+    <script>
+        // Store default inline SVG as a safe data URL so html2pdf can render it perfectly.
+        window.defaultLogoData = "data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D%270%200%20200%20200%27%20fill%3D%27none%27%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%3E%3Cpath%20d%3D%27M100%20190C100%20190%20180%20150%20180%2050V20L100%200L20%2020V50C20%20150%20100%20190%20100%20190Z%27%20fill%3D%27%231e3a8a%27%2F%3E%3Cpath%20d%3D%27M100%20175C100%20175%20165%20140%20165%2055V30L100%2012L35%2030V55C35%20140%20100%20175%20100%20175Z%27%20fill%3D%27none%27%20stroke%3D%27%23f59e0b%27%20stroke-width%3D%276%27%2F%3E%3Cpath%20d%3D%27M100%20130L45%20110V140L100%20160L155%20140V110L100%20130Z%27%20fill%3D%27%23f8fafc%27%2F%3E%3Cpath%20d%3D%27M100%20130V160%27%20stroke%3D%27%231e3a8a%27%20stroke-width%3D%274%27%2F%3E%3Cpath%20d%3D%27M45%20115Q72.5%20130%20100%20130Q127.5%20130%20155%20115%27%20stroke%3D%27%23f59e0b%27%20stroke-width%3D%274%27%20fill%3D%27none%27%2F%3E%3Ccircle%20cx%3D%27100%27%20cy%3D%2770%27%20r%3D%2730%27%20fill%3D%27%23f59e0b%27%2F%3E%3Cpath%20d%3D%27M100%2045V95M75%2070H125%27%20stroke%3D%27%231e3a8a%27%20stroke-width%3D%278%27%20stroke-linecap%3D%27round%27%2F%3E%3Cpath%20d%3D%27M100%2025L103%2035L113%2038L103%2041L100%2051L97%2041L87%2038L97%2035Z%27%20fill%3D%27%23ffffff%27%2F%3E%3Ctext%20x%3D%27100%27%20y%3D%27152%27%20font-family%3D%27Georgia%2C%20serif%27%20font-size%3D%2718%27%20font-weight%3D%27900%27%20fill%3D%27%231e3a8a%27%20text-anchor%3D%27middle%27%3EG%20D%20S%3C%2Ftext%3E%3C%2Fsvg%3E";
+
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // === LOCAL STORAGE DB INIT & MIGRATION ===
+        const db = {
+            classes: JSON.parse(localStorage.getItem('gds_classes')) || [
+                { id: 'c1', name: 'Creche' }, 
+                { id: 'c2', name: 'Nursery 1' },
+                { id: 'c3', name: 'Nursery 2' },
+                { id: 'c4', name: 'KG 1' },
+                { id: 'c5', name: 'KG 2' },
+                { id: 'c6', name: 'Basic 1' },
+                { id: 'c7', name: 'JHS 1' }
+            ],
+            subjects: JSON.parse(localStorage.getItem('gds_subjects')) || [
+                { id: 's1', name: 'English Language' },
+                { id: 's2', name: 'Mathematics' },
+                { id: 's3', name: 'Science' },
+                { id: 's4', name: 'Our World Our People' },
+                { id: 's5', name: 'Creative Arts' },
+                { id: 's6', name: 'Computing' }
+            ],
+            teachers: JSON.parse(localStorage.getItem('gds_teachers')) || [],
+            students: JSON.parse(localStorage.getItem('gds_students')) || [],
+            // Settings
+            settings: JSON.parse(localStorage.getItem('gds_settings')) || {
+                vacationDate: '',
+                resumptionDate: '',
+                daysOpened: '',
+                currentTerm: 'Term 2',
+                schoolLogo: '' // Stores the user-uploaded GPMS1.png logo
+            }
+        };
+
+        // Guarantee logo fallback assignment on load
+        function updateAllLogos() {
+            const logoSrc = db.settings.schoolLogo || window.defaultLogoData;
+            document.querySelectorAll('.school-logo-img').forEach(img => {
+                img.src = logoSrc;
+            });
+        }
+        document.addEventListener('DOMContentLoaded', updateAllLogos);
+        
+        // Ensure defaults
+        if (!db.settings.currentTerm) db.settings.currentTerm = 'Term 2';
+
+        // Data Migration for Subjects
+        db.classes.forEach(c => {
+            if (!c.subjects) {
+                c.subjects = db.subjects.map(s => s.id);
+            }
+        });
+
+        // Data Migration for Terms
+        db.students.forEach(s => {
+            if (!s.terms) {
+                s.terms = {
+                    'Term 1': { scores: {}, attendance: { present: '' }, psychomotor: {}, remarks: { ct: '', ht: '' } },
+                    'Term 2': {
+                        scores: s.scores || {},
+                        attendance: s.attendance || { present: '' },
+                        psychomotor: s.psychomotor || {},
+                        remarks: s.remarks || { ct: '', ht: '' }
+                    },
+                    'Term 3': { scores: {}, attendance: { present: '' }, psychomotor: {}, remarks: { ct: '', ht: '' } }
+                };
+                delete s.scores;
+                delete s.attendance;
+                delete s.psychomotor;
+                delete s.remarks;
+            }
+            if (!s.enrolledTerms) {
+                s.enrolledTerms = [db.settings.currentTerm];
+            }
+        });
+        localStorage.setItem('gds_classes', JSON.stringify(db.classes));
+        localStorage.setItem('gds_students', JSON.stringify(db.students));
+
+        // GLOBAL CONFIG FOR PSYCHOMOTOR SKILLS
+        const psychomotorSkills = [
+            "Handwriting", "Fluency in Reading", "Attention in Class", 
+            "Punctuality", "Neatness", "Social Skills", "Sports/Games"
+        ];
+
+        let currentUser = null;
+        let currentStudentId = null;
+        let adminSelectedClassId = null;
+        let pendingStudentClassId = null; 
+        let currentClassForAssignment = null; 
+
+        function saveData() {
+            localStorage.setItem('gds_classes', JSON.stringify(db.classes));
+            localStorage.setItem('gds_subjects', JSON.stringify(db.subjects));
+            localStorage.setItem('gds_teachers', JSON.stringify(db.teachers));
+            localStorage.setItem('gds_students', JSON.stringify(db.students));
+            localStorage.setItem('gds_settings', JSON.stringify(db.settings));
+        }
+
+        // Helper to get Term Data for a student
+        function getTermData(student, term) {
+            if (!student.terms) student.terms = {};
+            if (!student.terms[term]) {
+                student.terms[term] = { scores: {}, attendance: { present: '' }, psychomotor: {}, remarks: { ct: '', ht: '' } };
+            }
+            return student.terms[term];
+        }
+
+        // --- CUSTOM LOGO UPLOAD ---
+        window.handleLogoUpload = function(event, containerId) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const base64Image = e.target.result;
+                    db.settings.schoolLogo = base64Image;
+                    document.getElementById(`${containerId}-logo-preview`).src = base64Image;
+                    saveData();
+                    updateAllLogos();
+                    alert("Custom Logo Successfully Uploaded! It will now appear perfectly on all Report Cards and Broad Sheets.");
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+
+        // --- AUTH ---
+        function togglePortal() {
+            updateAllLogos(); // Ensure logos are populated
+            const portal = document.getElementById('school-portal');
+            const publicSite = document.getElementById('public-site');
+            
+            if (portal.classList.contains('hidden')) {
+                portal.classList.remove('hidden');
+                publicSite.classList.add('hidden'); 
+                document.getElementById('portal-login').classList.remove('hidden');
+                document.getElementById('admin-dashboard').classList.add('hidden');
+                document.getElementById('teacher-dashboard').classList.add('hidden');
+                document.getElementById('logout-btn').classList.add('hidden');
+                document.getElementById('loading-indicator').classList.remove('hidden');
+            } else {
+                portal.classList.add('hidden');
+                publicSite.classList.remove('hidden');
+            }
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('username').value;
+            const p = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
+            const err = document.getElementById('login-error');
+
+            if (role === 'admin' && u === 'admin' && p === 'password') {
+                currentUser = { role: 'admin', name: 'Administrator' };
+                initAdminDashboard();
+            } else if (role === 'teacher') {
+                const teacher = db.teachers.find(t => t.username === u && t.password === p);
+                if (teacher) {
+                    currentUser = { ...teacher, role: 'teacher' };
+                    initTeacherDashboard();
+                } else {
+                    err.classList.remove('hidden');
+                    return;
+                }
+            } else {
+                err.classList.remove('hidden');
+                return;
+            }
+
+            err.classList.add('hidden');
+            document.getElementById('portal-login').classList.add('hidden');
+            document.getElementById('portal-user-display').innerText = `Welcome, ${currentUser.name}`;
+            document.getElementById('logout-btn').classList.remove('hidden');
+        }
+
+        function logout() {
+            currentUser = null;
+            adminSelectedClassId = null;
+            document.getElementById('portal-login').classList.remove('hidden');
+            document.getElementById('admin-dashboard').classList.add('hidden');
+            document.getElementById('teacher-dashboard').classList.add('hidden');
+            document.getElementById('logout-btn').classList.add('hidden');
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        }
+
+        // --- ADMIN DASHBOARD ---
+        function initAdminDashboard() {
+            document.getElementById('admin-dashboard').classList.remove('hidden');
+            renderAdminLists();
+            renderTermSettings('admin-term-settings');
+            
+            const rptSelect = document.getElementById('admin-report-class-select');
+            rptSelect.innerHTML = '<option value="">Select a Class to View...</option>';
+            db.classes.forEach(c => {
+                rptSelect.innerHTML += `<option value="${c.id}">${c.name}</option>`;
+            });
+            document.getElementById('admin-student-view').classList.add('hidden');
+            document.getElementById('admin-select-msg').classList.remove('hidden');
+        }
+
+        function renderAdminLists() {
+            const classList = document.getElementById('admin-class-list');
+            const assignSelect = document.getElementById('teacher-class-assign');
+            classList.innerHTML = '';
+            assignSelect.innerHTML = '<option value="">Assign Class...</option>';
+            
+            db.classes.forEach(c => {
+                classList.innerHTML += `
+                    <li class="flex justify-between items-center bg-slate-50 p-2 rounded border">
+                        <span class="font-bold">${c.name}</span>
+                        <div>
+                            <button onclick="manageClassSubjects('${c.id}')" class="text-brand-blue hover:text-blue-700 mr-3 text-sm" title="Assign Subjects">
+                                <i class="fas fa-list-check"></i> Subjects
+                            </button>
+                            <button onclick="deleteClass('${c.id}')" class="text-red-500 hover:text-red-700 text-sm"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </li>`;
+                assignSelect.innerHTML += `<option value="${c.id}">${c.name}</option>`;
+            });
+
+            const subList = document.getElementById('admin-subject-list');
+            subList.innerHTML = '';
+            db.subjects.forEach(s => {
+                subList.innerHTML += `
+                    <li class="flex justify-between items-center bg-slate-50 p-2 rounded border">
+                        <span>${s.name}</span>
+                        <button onclick="deleteSubject('${s.id}')" class="text-red-500 hover:text-red-700"><i class="fas fa-trash"></i></button>
+                    </li>`;
+            });
+
+            const teachList = document.getElementById('admin-teacher-list');
+            teachList.innerHTML = '';
+            db.teachers.forEach(t => {
+                const className = db.classes.find(c => c.id === t.classId)?.name || 'Unassigned';
+                teachList.innerHTML += `
+                    <li class="bg-slate-50 p-2 rounded border text-sm">
+                        <div class="flex justify-between font-bold">
+                            <span>${t.name}</span>
+                            <button onclick="deleteTeacher('${t.id}')" class="text-red-500"><i class="fas fa-trash"></i></button>
+                        </div>
+                        <div class="text-xs text-slate-500">User: ${t.username} | Class: ${className}</div>
+                    </li>`;
+            });
+        }
+
+        // --- TEACHER DASHBOARD ---
+        function initTeacherDashboard() {
+            document.getElementById('teacher-dashboard').classList.remove('hidden');
+            const className = db.classes.find(c => c.id === currentUser.classId)?.name || 'Unknown';
+            document.getElementById('teacher-class-display').innerText = className;
+            renderTermSettings('teacher-term-settings'); 
+            renderStudentList();
+        }
+
+        function renderStudentList() {
+            const tbody = document.getElementById('teacher-student-list');
+            tbody.innerHTML = '';
+            const students = db.students.filter(s => s.classId === currentUser.classId && s.enrolledTerms.includes(db.settings.currentTerm));
+
+            students.forEach(s => {
+                tbody.innerHTML += `
+                    <tr class="border-b hover:bg-slate-50">
+                        <td class="p-3 font-medium">${s.name}</td>
+                        <td class="p-3 text-sm text-slate-500">Active</td>
+                        <td class="p-3 text-right">
+                            <button onclick="openGrading('${s.id}')" class="bg-brand-gold text-brand-blue text-sm px-3 py-1 rounded font-bold hover:bg-yellow-400 mr-2">
+                                <i class="fas fa-edit mr-1"></i> Marks
+                            </button>
+                            <button onclick="deleteStudent('${s.id}')" class="bg-red-500 text-white text-sm px-3 py-1 rounded font-bold hover:bg-red-700">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            if (students.length === 0) tbody.innerHTML = '<tr><td colspan="3" class="p-4 text-center text-slate-500">No students found. Add one!</td></tr>';
+        }
+
+        // --- CRUD OPERATIONS ---
+        function addClass() {
+            const name = document.getElementById('new-class-name').value;
+            if (name) {
+                const allSubjectIds = db.subjects.map(s => s.id);
+                db.classes.push({ id: 'c' + Date.now(), name, subjects: allSubjectIds });
+                document.getElementById('new-class-name').value = '';
+                saveData();
+                renderAdminLists();
+                initAdminDashboard(); 
+            }
+        }
+        function deleteClass(id) { 
+            if(confirm('Delete this class?')) {
+                db.classes = db.classes.filter(c => c.id !== id); 
+                saveData(); 
+                renderAdminLists(); 
+                initAdminDashboard(); 
+            }
+        }
+
+        function addSubject() {
+            const name = document.getElementById('new-subject-name').value;
+            if (name) {
+                const newId = 's' + Date.now();
+                db.subjects.push({ id: newId, name });
+                saveData();
+                renderAdminLists();
+                document.getElementById('new-subject-name').value = '';
+            }
+        }
+        function deleteSubject(id) { 
+            if(confirm('Delete subject?')) {
+                db.subjects = db.subjects.filter(s => s.id !== id); 
+                saveData(); 
+                renderAdminLists(); 
+            }
+        }
+
+        function addTeacher() {
+            const name = document.getElementById('teacher-name').value;
+            const user = document.getElementById('teacher-username').value;
+            const pass = document.getElementById('teacher-password').value;
+            const classId = document.getElementById('teacher-class-assign').value;
+
+            if (name && user && pass && classId) {
+                db.teachers.push({ id: 't' + Date.now(), name, username: user, password: pass, classId });
+                saveData();
+                renderAdminLists();
+                document.getElementById('teacher-name').value = '';
+                document.getElementById('teacher-username').value = '';
+                document.getElementById('teacher-password').value = '';
+            } else {
+                alert("Please fill all fields for the teacher and assign a class.");
+            }
+        }
+        function deleteTeacher(id) { 
+            if(confirm('Delete teacher?')) {
+                db.teachers = db.teachers.filter(t => t.id !== id); 
+                saveData(); 
+                renderAdminLists(); 
+            }
+        }
+
+        function loadAdminStudentList() {
+            const classId = document.getElementById('admin-report-class-select').value;
+            adminSelectedClassId = classId;
+            
+            if(!classId) {
+                document.getElementById('admin-student-view').classList.add('hidden');
+                document.getElementById('admin-select-msg').classList.remove('hidden');
+                return;
+            }
+
+            document.getElementById('admin-student-view').classList.remove('hidden');
+            document.getElementById('admin-select-msg').classList.add('hidden');
+            
+            const cls = db.classes.find(c => c.id === classId);
+            document.getElementById('admin-class-title').innerText = `Students in ${cls.name}`;
+
+            const tbody = document.getElementById('admin-student-list-body');
+            tbody.innerHTML = '';
+            const students = db.students.filter(s => s.classId === classId && s.enrolledTerms.includes(db.settings.currentTerm));
+
+            students.forEach(s => {
+                tbody.innerHTML += `
+                    <tr class="border-b hover:bg-slate-50">
+                        <td class="p-2 font-medium">${s.name}</td>
+                        <td class="p-2 text-right">
+                             <button onclick="openGrading('${s.id}')" class="bg-brand-blue text-white text-xs px-2 py-1 rounded hover:bg-blue-800 mr-2">
+                                <i class="fas fa-edit"></i> Marks / Report
+                            </button>
+                             <button onclick="deleteStudent('${s.id}')" class="bg-red-500 text-white text-xs px-2 py-1 rounded hover:bg-red-700">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            });
+            if (students.length === 0) tbody.innerHTML = '<tr><td colspan="2" class="p-4 text-center text-slate-500">No students found in this class for the selected term.</td></tr>';
+        }
+
+        function openStudentModal() {
+            let targetClassId;
+            if (currentUser.role === 'teacher') targetClassId = currentUser.classId;
+            else if (currentUser.role === 'admin') targetClassId = adminSelectedClassId;
+
+            if (!targetClassId) {
+                alert("Error: No class selected.");
+                return;
+            }
+
+            pendingStudentClassId = targetClassId;
+            document.getElementById('new-student-name-input').value = '';
+            document.getElementById('add-student-modal').classList.remove('hidden');
+            document.getElementById('new-student-name-input').focus();
+        }
+
+        function closeAddStudentModal() {
+            document.getElementById('add-student-modal').classList.add('hidden');
+            pendingStudentClassId = null;
+        }
+
+        function submitNewStudent() {
+            const name = document.getElementById('new-student-name-input').value;
+            if (name && pendingStudentClassId) {
+                db.students.push({ 
+                    id: 'st' + Date.now(), 
+                    name, 
+                    classId: pendingStudentClassId,
+                    enrolledTerms: [db.settings.currentTerm],
+                    terms: {
+                        'Term 1': { scores: {}, attendance: { present: '' }, psychomotor: {}, remarks: { ct: '', ht: '' } },
+                        'Term 2': { scores: {}, attendance: { present: '' }, psychomotor: {}, remarks: { ct: '', ht: '' } },
+                        'Term 3': { scores: {}, attendance: { present: '' }, psychomotor: {}, remarks: { ct: '', ht: '' } }
+                    }
+                });
+                saveData();
+                closeAddStudentModal();
+                
+                if (currentUser.role === 'teacher') renderStudentList();
+                else loadAdminStudentList();
+            } else {
+                alert("Please enter a name.");
+            }
+        }
+
+        // --- EXCEL IMPORT LOGIC ---
+        function openImportModal() {
+            let targetClassId;
+            if (currentUser.role === 'teacher') targetClassId = currentUser.classId;
+            else if (currentUser.role === 'admin') targetClassId = adminSelectedClassId;
+
+            if (!targetClassId) {
+                alert("Error: No class selected.");
+                return;
+            }
+
+            pendingStudentClassId = targetClassId;
+            document.getElementById('import-file-input').value = '';
+            document.getElementById('import-student-modal').classList.remove('hidden');
+        }
+
+        function closeImportModal() {
+            document.getElementById('import-student-modal').classList.add('hidden');
+            pendingStudentClassId = null;
+        }
+
+        function processImport() {
+            const fileInput = document.getElementById('import-file-input');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert("Please select an Excel or CSV file.");
+                return;
+            }
+            if (!pendingStudentClassId) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, {type: 'array'});
+                const firstSheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[firstSheetName];
+                const json = XLSX.utils.sheet_to_json(worksheet, {header: 1}); // Read as array of arrays
+
+                let importedCount = 0;
+                let nameColumnIndex = -1;
+                const headers = json[0];
+                
+                if (headers) {
+                    for (let i = 0; i < headers.length; i++) {
+                        const h = String(headers[i]).toLowerCase().trim();
+                        if (h === 'name' || h === 'student name' || h === 'student' || h === 'full name') {
+                            nameColumnIndex = i;
+                            break;
+                        }
+                    }
+                    if (nameColumnIndex === -1) nameColumnIndex = 0;
+                }
+
+                for (let r = 1; r < json.length; r++) { // Skip header row
+                    const row = json[r];
+                    if (row && row[nameColumnIndex]) {
+                        const studentName = String(row[nameColumnIndex]).trim();
+                        if (studentName !== '') {
+                            db.students.push({
+                                id: 'st' + Date.now() + Math.random().toString(36).substr(2, 5),
+                                name: studentName,
+                                classId: pendingStudentClassId,
+                                enrolledTerms: [db.settings.currentTerm],
+                                terms: {
+                                    'Term 1': { scores: {}, attendance: { present: '' }, psychomotor: {}, remarks: { ct: '', ht: '' } },
+                                    'Term 2': { scores: {}, attendance: { present: '' }, psychomotor: {}, remarks: { ct: '', ht: '' } },
+                                    'Term 3': { scores: {}, attendance: { present: '' }, psychomotor: {}, remarks: { ct: '', ht: '' } }
+                                }
+                            });
+                            importedCount++;
+                        }
+                    }
+                }
+
+                if (importedCount > 0) {
+                    saveData();
+                    alert(`Successfully imported ${importedCount} students!`);
+                    closeImportModal();
+                    if (currentUser.role === 'teacher') renderStudentList();
+                    else loadAdminStudentList();
+                } else {
+                    alert("No valid student names found.");
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function deleteStudent(id) {
+            if (confirm("Are you sure you want to delete this student and all their records?")) {
+                db.students = db.students.filter(s => s.id !== id);
+                saveData();
+                if (currentUser && currentUser.role === 'admin') {
+                    loadAdminStudentList();
+                } else if (currentUser && currentUser.role === 'teacher') {
+                    renderStudentList();
+                }
+            }
+        }
+
+        // --- SUBJECT ASSIGNMENT ---
+        function manageClassSubjects(classId) {
+            currentClassForAssignment = classId;
+            const cls = db.classes.find(c => c.id === classId);
+            if (!cls) return;
+
+            document.getElementById('assign-class-name').innerText = cls.name;
+            const container = document.getElementById('subject-checkbox-list');
+            container.innerHTML = '';
+
+            const assignedIds = cls.subjects || [];
+
+            db.subjects.forEach(sub => {
+                const isChecked = assignedIds.includes(sub.id) ? 'checked' : '';
+                container.innerHTML += `
+                    <label class="flex items-center space-x-2 p-2 hover:bg-white rounded cursor-pointer border border-transparent hover:border-slate-200">
+                        <input type="checkbox" class="subject-checkbox w-4 h-4 text-brand-blue" value="${sub.id}" ${isChecked}>
+                        <span>${sub.name}</span>
+                    </label>
+                `;
+            });
+            document.getElementById('subject-assignment-modal').classList.remove('hidden');
+        }
+
+        function closeSubjectModal() {
+            document.getElementById('subject-assignment-modal').classList.add('hidden');
+            currentClassForAssignment = null;
+        }
+
+        function saveClassSubjects() {
+            if (!currentClassForAssignment) return;
+            const checkboxes = document.querySelectorAll('.subject-checkbox:checked');
+            const selectedIds = Array.from(checkboxes).map(cb => cb.value);
+
+            const cls = db.classes.find(c => c.id === currentClassForAssignment);
+            cls.subjects = selectedIds;
+            saveData();
+            closeSubjectModal();
+        }
+
+        // --- AUTOMATED REMARKS & PSYCHOMOTOR ---
+        function calculateAutoValues(student, currentTerm) {
+            const classObj = db.classes.find(c => c.id === student.classId);
+            const assignedSubjectIds = classObj.subjects || db.subjects.map(s => s.id);
+            const applicableSubjects = db.subjects.filter(s => assignedSubjectIds.includes(s.id));
+            
+            const termData = getTermData(student, currentTerm);
+
+            let totalMarks = 0;
+            let count = 0;
+            applicableSubjects.forEach(sub => {
+                const score = (termData.scores && termData.scores[sub.id]) ? termData.scores[sub.id] : { class: 0, exam: 0 };
+                const subTotal = (parseFloat(score.class) || 0) + (parseFloat(score.exam) || 0);
+                totalMarks += subTotal;
+                count++;
+            });
+            
+            const avg = count > 0 ? (totalMarks / count) : 0;
+
+            let psychoVal = 'Needs Improvement';
+            if(avg >= 80) psychoVal = 'Excellent';
+            else if(avg >= 70) psychoVal = 'Very Good';
+            else if(avg >= 60) psychoVal = 'Good';
+            else if(avg >= 50) psychoVal = 'Average';
+
+            let ctRemark = 'Below average, please sit up.';
+            let htRemark = 'More effort needed next term.';
+            if (avg >= 80) {
+                ctRemark = 'Excellent performance, keep it up.';
+                htRemark = 'Excellent performance! Keep it up.';
+            } else if (avg >= 70) {
+                ctRemark = 'Very Good, shows great potential.';
+                htRemark = 'Outstanding Result.';
+            } else if (avg >= 60) {
+                ctRemark = 'Good work, but can do better.';
+                htRemark = 'Good Improvement shown.';
+            } else if (avg >= 50) {
+                ctRemark = 'Average performance, needs more study.';
+                htRemark = 'Satisfactory performance.';
+            }
+
+            return { psychoVal, ctRemark, htRemark };
+        }
+
+        // --- MASTER MARK SHEET ---
+        function openMasterMarkSheet() {
+            let targetClassId;
+            if (currentUser.role === 'teacher') targetClassId = currentUser.classId;
+            else if (currentUser.role === 'admin') targetClassId = adminSelectedClassId;
+
+            if (!targetClassId) {
+                alert("Please select a class first.");
+                return;
+            }
+
+            const currentTerm = db.settings.currentTerm;
+            const classObj = db.classes.find(c => c.id === targetClassId);
+            const className = classObj.name;
+            const isPreSchool = /creche|nursery|kg|preschool|pre-school|kindergarten/i.test(className);
+            const students = db.students.filter(s => s.classId === targetClassId && s.enrolledTerms.includes(db.settings.currentTerm));
+            
+            const assignedSubjectIds = classObj.subjects || db.subjects.map(s => s.id);
+            const applicableSubjects = db.subjects.filter(s => assignedSubjectIds.includes(s.id));
+
+            document.getElementById('master-mark-class-name').innerText = className;
+            document.getElementById('master-mark-term-name').innerText = currentTerm;
+            
+            if (students.length === 0) {
+                document.getElementById('master-mark-table-container').innerHTML = '<p class="text-center text-slate-500 py-8">No students found in this class.</p>';
+            } else if (applicableSubjects.length === 0) {
+                document.getElementById('master-mark-table-container').innerHTML = '<p class="text-center text-slate-500 py-8">No subjects assigned to this class.</p>';
+            } else {
+                let html = '<table class="w-full text-sm border-collapse bg-white whitespace-nowrap">';
+                
+                html += '<thead class="bg-slate-200 sticky top-0 z-20 shadow-sm">';
+                html += '<tr><th class="p-3 border border-slate-300 text-left sticky left-0 bg-slate-200 z-30 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">Student Name</th>';
+                applicableSubjects.forEach(sub => {
+                    html += `<th colspan="${isPreSchool ? 1 : 2}" class="p-2 border border-slate-300 text-center font-bold text-brand-blue">${sub.name}</th>`;
+                });
+                html += '</tr>';
+                
+                html += '<tr><th class="p-2 border border-slate-300 sticky left-0 bg-slate-200 z-30 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]"></th>';
+                applicableSubjects.forEach(sub => {
+                    if (isPreSchool) {
+                        html += `<th class="p-1 border border-slate-300 text-center text-xs text-slate-600 bg-slate-100">Score (100)</th>`;
+                    } else {
+                        html += `<th class="p-1 border border-slate-300 text-center text-xs text-slate-600 bg-slate-100">Class (50)</th>
+                                 <th class="p-1 border border-slate-300 text-center text-xs text-slate-600 bg-slate-100">Exam (50)</th>`;
+                    }
+                });
+                html += '</tr></thead>';
+
+                html += '<tbody>';
+                students.forEach(student => {
+                    const termData = getTermData(student, currentTerm);
+
+                    html += `<tr class="hover:bg-amber-50">
+                                <td class="p-3 border border-slate-300 font-bold text-slate-700 sticky left-0 bg-white z-10 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">${student.name}</td>`;
+                    
+                    applicableSubjects.forEach(sub => {
+                        const score = (termData.scores && termData.scores[sub.id]) ? termData.scores[sub.id] : { class: 0, exam: 0 };
+                        if (isPreSchool) {
+                            html += `<td class="p-1 border border-slate-300 text-center">
+                                        <input type="number" max="100" id="master-mark-${student.id}-${sub.id}-exam" class="w-20 p-1.5 border rounded bg-slate-50 text-center focus:border-brand-blue focus:bg-white" value="${score.exam || ''}">
+                                     </td>`;
+                        } else {
+                            html += `<td class="p-1 border border-slate-300 text-center">
+                                        <input type="number" max="50" id="master-mark-${student.id}-${sub.id}-class" class="w-16 p-1.5 border rounded bg-slate-50 text-center focus:border-brand-blue focus:bg-white" value="${score.class || ''}">
+                                     </td>
+                                     <td class="p-1 border border-slate-300 text-center">
+                                        <input type="number" max="50" id="master-mark-${student.id}-${sub.id}-exam" class="w-16 p-1.5 border rounded bg-slate-50 text-center focus:border-brand-blue focus:bg-white" value="${score.exam || ''}">
+                                     </td>`;
+                        }
+                    });
+                    html += '</tr>';
+                });
+                html += '</tbody></table>';
+
+                document.getElementById('master-mark-table-container').innerHTML = html;
+            }
+
+            document.getElementById('master-mark-sheet-modal').classList.remove('hidden');
+        }
+
+        function closeMasterMarkSheet() {
+            document.getElementById('master-mark-sheet-modal').classList.add('hidden');
+        }
+
+        function saveMasterMarks() {
+            let targetClassId;
+            if (currentUser.role === 'teacher') targetClassId = currentUser.classId;
+            else if (currentUser.role === 'admin') targetClassId = adminSelectedClassId;
+
+            const currentTerm = db.settings.currentTerm;
+            const classObj = db.classes.find(c => c.id === targetClassId);
+            const className = classObj.name;
+            const isPreSchool = /creche|nursery|kg|preschool|pre-school|kindergarten/i.test(className);
+            const students = db.students.filter(s => s.classId === targetClassId && s.enrolledTerms.includes(db.settings.currentTerm));
+            
+            const assignedSubjectIds = classObj.subjects || db.subjects.map(s => s.id);
+            const applicableSubjects = db.subjects.filter(s => assignedSubjectIds.includes(s.id));
+
+            students.forEach(student => {
+                const termData = getTermData(student, currentTerm);
+
+                if (!termData.scores) termData.scores = {};
+                applicableSubjects.forEach(sub => {
+                    if (!termData.scores[sub.id]) termData.scores[sub.id] = { class: 0, exam: 0 };
+                    
+                    const examInput = document.getElementById(`master-mark-${student.id}-${sub.id}-exam`);
+                    if (examInput) termData.scores[sub.id].exam = examInput.value || 0;
+
+                    if (!isPreSchool) {
+                        const classInput = document.getElementById(`master-mark-${student.id}-${sub.id}-class`);
+                        if (classInput) termData.scores[sub.id].class = classInput.value || 0;
+                    } else {
+                        termData.scores[sub.id].class = 0;
+                    }
+                });
+
+                const autoVals = calculateAutoValues(student, currentTerm);
+                if(!termData.remarks) termData.remarks = {};
+                termData.remarks.ct = autoVals.ctRemark;
+                termData.remarks.ht = autoVals.htRemark;
+                
+                if (isPreSchool) {
+                    if(!termData.psychomotor) termData.psychomotor = {};
+                    psychomotorSkills.forEach(skill => {
+                        termData.psychomotor[skill] = autoVals.psychoVal;
+                    });
+                }
+            });
+
+            saveData();
+            closeMasterMarkSheet();
+            alert("Class marks saved successfully!");
+        }
+
+        // --- TERM SETTINGS ---
+        function renderTermSettings(containerId) {
+            const container = document.getElementById(containerId);
+            if(!container) return;
+            
+            container.innerHTML = `
+                <h3 class="font-bold text-lg text-brand-blue mb-4"><i class="fas fa-calendar-alt mr-2"></i>Term & System Settings</h3>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700">Academic Term</label>
+                        <select id="${containerId}-term" class="w-full p-2 border rounded font-bold text-brand-blue" onchange="window.saveTermSettings('${containerId}')">
+                            <option value="Term 1" ${db.settings.currentTerm === 'Term 1' ? 'selected' : ''}>Term 1</option>
+                            <option value="Term 2" ${db.settings.currentTerm === 'Term 2' ? 'selected' : ''}>Term 2</option>
+                            <option value="Term 3" ${db.settings.currentTerm === 'Term 3' ? 'selected' : ''}>Term 3</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700">Vacation Date</label>
+                        <input type="date" id="${containerId}-vacation" class="w-full p-2 border rounded" value="${db.settings.vacationDate}" onchange="window.saveTermSettings('${containerId}')">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700">Resumption Date</label>
+                        <input type="date" id="${containerId}-resumption" class="w-full p-2 border rounded" value="${db.settings.resumptionDate}" onchange="window.saveTermSettings('${containerId}')">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700">Times School Opened</label>
+                        <input type="number" id="${containerId}-opened" class="w-full p-2 border rounded" value="${db.settings.daysOpened}" onchange="window.saveTermSettings('${containerId}')">
+                    </div>
+                </div>
+                <div class="border-t pt-4">
+                    <h4 class="font-bold text-md text-brand-blue mb-2">Customize School Logo</h4>
+                    <div class="flex items-center gap-4">
+                        <img id="${containerId}-logo-preview" src="${db.settings.schoolLogo || window.defaultLogoData}" class="w-16 h-16 object-contain border p-1 bg-white rounded">
+                        <div>
+                            <input type="file" id="${containerId}-logo-upload" accept="image/png, image/jpeg, image/jpg" class="text-sm block w-full text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-blue file:text-white hover:file:bg-blue-800" onchange="window.handleLogoUpload(event, '${containerId}')">
+                            <p class="text-xs text-slate-500 mt-1">Upload your exact GPMS1.png here to force it onto all report cards.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function saveTermSettings(containerId) {
+            const term = document.getElementById(`${containerId}-term`).value;
+            const vac = document.getElementById(`${containerId}-vacation`).value;
+            const res = document.getElementById(`${containerId}-resumption`).value;
+            const open = document.getElementById(`${containerId}-opened`).value;
+
+            const termChanged = db.settings.currentTerm !== term;
+
+            db.settings.currentTerm = term;
+            db.settings.vacationDate = vac;
+            db.settings.resumptionDate = res;
+            db.settings.daysOpened = open;
+            saveData();
+
+            if (termChanged) {
+                if (currentUser.role === 'admin' && adminSelectedClassId) {
+                    loadAdminStudentList();
+                } else if (currentUser.role === 'teacher') {
+                    renderStudentList();
+                }
+            }
+        }
+
+        // --- GRADING ---
+        function openGrading(studentId) {
+            currentStudentId = studentId;
+            const student = db.students.find(s => s.id === studentId);
+            const className = db.classes.find(c => c.id === student.classId).name;
+            const classObj = db.classes.find(c => c.id === student.classId);
+            const currentTerm = db.settings.currentTerm;
+            
+            const isPreSchool = /creche|nursery|kg|preschool|pre-school|kindergarten/i.test(className);
+
+            document.getElementById('grading-student-name').innerText = student.name;
+            document.getElementById('grading-term-name').innerText = currentTerm;
+            document.getElementById('grading-modal').classList.remove('hidden');
+
+            const headerRow = document.getElementById('grading-table-head');
+            if (isPreSchool) {
+                headerRow.innerHTML = `
+                    <th class="p-2 text-left">Subject</th>
+                    <th class="p-2 w-32 text-center">Score (100%)</th>
+                    <th class="p-2 w-20 text-center">Grade</th>
+                    <th class="p-2 text-left">Remark</th>
+                `;
+            } else {
+                headerRow.innerHTML = `
+                    <th class="p-2 text-left">Subject</th>
+                    <th class="p-2 w-24 text-center">Class (50)</th>
+                    <th class="p-2 w-24 text-center">Exam (50)</th>
+                    <th class="p-2 w-20 text-center">Total</th>
+                    <th class="p-2 w-20 text-center">Grade</th>
+                    <th class="p-2 text-left">Remark</th>
+                `;
+            }
+
+            const tbody = document.getElementById('grading-subjects-body');
+            tbody.innerHTML = '';
+            
+            const assignedSubjectIds = classObj.subjects || db.subjects.map(s => s.id);
+            const applicableSubjects = db.subjects.filter(s => assignedSubjectIds.includes(s.id));
+
+            if (applicableSubjects.length === 0) {
+                 tbody.innerHTML = '<tr><td colspan="6" class="p-4 text-center text-red-500">No subjects assigned.</td></tr>';
+            }
+
+            const termData = getTermData(student, currentTerm);
+
+            applicableSubjects.forEach(sub => {
+                const score = (termData.scores && termData.scores[sub.id]) ? termData.scores[sub.id] : { class: 0, exam: 0 };
+                const total = (parseFloat(score.class) || 0) + (parseFloat(score.exam) || 0);
+
+                if (isPreSchool) {
+                     const val = score.exam || 0; 
+                     tbody.innerHTML += `
+                        <tr class="border-b">
+                            <td class="p-2">${sub.name}</td>
+                            <td class="p-2 text-center">
+                                <input type="number" max="100" class="w-24 p-1 border rounded bg-slate-50 focus:border-brand-blue text-center" 
+                                    value="${val}" oninput="updateScore('${sub.id}', 'preschool_total', this.value)">
+                            </td>
+                            <td class="p-2 text-center text-sm" id="grade-${sub.id}">${getGrade(val)}</td>
+                            <td class="p-2 text-xs text-slate-500" id="remark-${sub.id}">${getAutoRemark(val)}</td>
+                        </tr>
+                    `;
+                } else {
+                    tbody.innerHTML += `
+                        <tr class="border-b">
+                            <td class="p-2">${sub.name}</td>
+                            <td class="p-2 text-center"><input type="number" max="50" class="w-16 p-1 border rounded bg-slate-50 focus:border-brand-blue text-center" value="${score.class}" oninput="updateScore('${sub.id}', 'class', this.value)"></td>
+                            <td class="p-2 text-center"><input type="number" max="50" class="w-16 p-1 border rounded bg-slate-50 focus:border-brand-blue text-center" value="${score.exam}" oninput="updateScore('${sub.id}', 'exam', this.value)"></td>
+                            <td class="p-2 font-bold text-center" id="total-${sub.id}">${total}</td>
+                            <td class="p-2 text-center text-sm" id="grade-${sub.id}">${getGrade(total)}</td>
+                            <td class="p-2 text-xs text-slate-500" id="remark-${sub.id}">${getAutoRemark(total)}</td>
+                        </tr>
+                    `;
+                }
+            });
+
+            const autoVals = calculateAutoValues(student, currentTerm);
+
+            const psySection = document.getElementById('psychomotor-section');
+            if (isPreSchool) {
+                psySection.classList.remove('hidden');
+                const container = document.getElementById('psychomotor-inputs');
+                container.innerHTML = '';
+                
+                psychomotorSkills.forEach(skill => {
+                    const val = (termData.psychomotor && termData.psychomotor[skill]) ? termData.psychomotor[skill] : autoVals.psychoVal;
+                    const safeSkillId = skill.replace(/[\s\/]+/g, '-');
+                    container.innerHTML += `
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600">${skill}</label>
+                            <select id="psycho-${safeSkillId}" onchange="updatePsychomotor('${skill}', this.value)" class="w-full p-1 border rounded text-sm">
+                                <option ${val==='Excellent'?'selected':''}>Excellent</option>
+                                <option ${val==='Very Good'?'selected':''}>Very Good</option>
+                                <option ${val==='Good'?'selected':''}>Good</option>
+                                <option ${val==='Average'?'selected':''}>Average</option>
+                                <option ${val==='Needs Improvement'?'selected':''}>Needs Improvement</option>
+                            </select>
+                        </div>
+                    `;
+                });
+            } else {
+                psySection.classList.add('hidden');
+            }
+
+            document.getElementById('grading-days-opened').value = db.settings.daysOpened || 0;
+            document.getElementById('grading-days-present').value = termData.attendance?.present || '';
+            document.getElementById('class-teacher-remark').value = termData.remarks?.ct || autoVals.ctRemark;
+            document.getElementById('head-teacher-remark').value = termData.remarks?.ht || autoVals.htRemark;
+        }
+
+        function updateScore(subId, type, val) {
+            const student = db.students.find(s => s.id === currentStudentId);
+            const currentTerm = db.settings.currentTerm;
+            const termData = getTermData(student, currentTerm);
+
+            if (!termData.scores) termData.scores = {};
+            if (!termData.scores[subId]) termData.scores[subId] = { class: 0, exam: 0 };
+            
+            let total = 0;
+
+            if (type === 'preschool_total') {
+                termData.scores[subId].class = 0;
+                termData.scores[subId].exam = val;
+                total = parseFloat(val) || 0;
+            } else {
+                termData.scores[subId][type] = val;
+                total = (parseFloat(termData.scores[subId].class) || 0) + (parseFloat(termData.scores[subId].exam) || 0);
+            }
+
+            document.getElementById(`total-${subId}`).innerText = total;
+            document.getElementById(`grade-${subId}`).innerText = getGrade(total);
+            document.getElementById(`remark-${subId}`).innerText = getAutoRemark(total);
+
+            const autoVals = calculateAutoValues(student, currentTerm);
+            document.getElementById('class-teacher-remark').value = autoVals.ctRemark;
+            document.getElementById('head-teacher-remark').value = autoVals.htRemark;
+
+            const className = db.classes.find(c => c.id === student.classId).name;
+            if (/creche|nursery|kg|preschool|pre-school|kindergarten/i.test(className)) {
+                psychomotorSkills.forEach(skill => {
+                    const safeSkillId = skill.replace(/[\s\/]+/g, '-');
+                    const el = document.getElementById(`psycho-${safeSkillId}`);
+                    if (el) el.value = autoVals.psychoVal;
+                    if (!termData.psychomotor) termData.psychomotor = {};
+                    termData.psychomotor[skill] = autoVals.psychoVal;
+                });
+            }
+        }
+
+        function updatePsychomotor(skill, val) {
+            const student = db.students.find(s => s.id === currentStudentId);
+            const termData = getTermData(student, db.settings.currentTerm);
+            if (!termData.psychomotor) termData.psychomotor = {};
+            termData.psychomotor[skill] = val;
+        }
+
+        function saveGrades() {
+            const student = db.students.find(s => s.id === currentStudentId);
+            const termData = getTermData(student, db.settings.currentTerm);
+
+            termData.remarks = {
+                ct: document.getElementById('class-teacher-remark').value,
+                ht: document.getElementById('head-teacher-remark').value
+            };
+            termData.attendance = { present: document.getElementById('grading-days-present').value };
+
+            saveData();
+            closeGradingModal();
+        }
+
+        function closeGradingModal() {
+            document.getElementById('grading-modal').classList.add('hidden');
+        }
+
+        function getGrade(score) {
+            if (score >= 80) return 'A';
+            if (score >= 70) return 'B';
+            if (score >= 60) return 'C';
+            if (score >= 50) return 'D';
+            if (score >= 40) return 'E';
+            return 'F';
+        }
+
+        function getAutoRemark(score) {
+            if (score >= 80) return 'Excellent';
+            if (score >= 70) return 'Very Good';
+            if (score >= 60) return 'Good';
+            if (score >= 50) return 'Pass';
+            return 'Fail';
+        }
+
+        function generateReportHTML(student) {
+            const classObj = db.classes.find(c => c.id === student.classId);
+            const className = classObj.name;
+            const currentTerm = db.settings.currentTerm;
+            const termData = getTermData(student, currentTerm);
+            const isPreSchool = /creche|nursery|kg|preschool|pre-school|kindergarten/i.test(className);
+            const rollCount = db.students.filter(s => s.classId === student.classId && s.enrolledTerms.includes(db.settings.currentTerm)).length;
+
+            let marksTableHead = '';
+            let marksRows = '';
+            
+            const assignedSubjectIds = classObj.subjects || db.subjects.map(s => s.id);
+            const applicableSubjects = db.subjects.filter(s => assignedSubjectIds.includes(s.id));
+            const tdStyle = 'border: 1pt solid black; padding: 4px;';
+
+            if (isPreSchool) {
+                marksTableHead = `
+                    <tr class="bg-slate-100">
+                        <th style="${tdStyle} text-align: left;">Subject</th>
+                        <th style="${tdStyle} width: 100px; text-align: center;">Score (100%)</th>
+                        <th style="${tdStyle} width: 60px; text-align: center;">Grade</th>
+                        <th style="${tdStyle} text-align: left;">Remarks</th>
+                    </tr>`;
+            } else {
+                marksTableHead = `
+                    <tr class="bg-slate-100">
+                        <th style="${tdStyle} text-align: left;">Subject</th>
+                        <th style="${tdStyle} width: 60px; text-align: center;">Class (50%)</th>
+                        <th style="${tdStyle} width: 60px; text-align: center;">Exam (50%)</th>
+                        <th style="${tdStyle} width: 60px; text-align: center;">Total (100%)</th>
+                        <th style="${tdStyle} width: 60px; text-align: center;">Grade</th>
+                        <th style="${tdStyle} width: 60px; text-align: center;">Pos.</th>
+                        <th style="${tdStyle} text-align: left;">Remarks</th>
+                    </tr>`;
+            }
+
+            if (applicableSubjects.length === 0) {
+                 marksRows = `<tr><td colspan="${isPreSchool ? 4 : 7}" style="${tdStyle} text-align: center; font-style: italic;">No subjects assigned.</td></tr>`;
+            }
+
+            applicableSubjects.forEach(sub => {
+                const score = (termData.scores && termData.scores[sub.id]) ? termData.scores[sub.id] : { class: 0, exam: 0 };
+                const total = (parseFloat(score.class) || 0) + (parseFloat(score.exam) || 0);
+                
+                if (isPreSchool) {
+                     marksRows += `
+                        <tr>
+                            <td style="${tdStyle} text-align: left;">${sub.name}</td>
+                            <td style="${tdStyle} text-align: center; font-weight: bold;">${total}</td>
+                            <td style="${tdStyle} text-align: center;">${getGrade(total)}</td>
+                            <td style="${tdStyle} text-align: left; font-size: 0.75rem; font-style: italic;">${getAutoRemark(total)}</td>
+                        </tr>
+                    `;
+                } else {
+                    const classStudents = db.students.filter(s => s.classId === student.classId && s.enrolledTerms.includes(db.settings.currentTerm));
+                    const scores = classStudents.map(s => {
+                        const tData = getTermData(s, currentTerm);
+                        const sc = (tData.scores && tData.scores[sub.id]) ? tData.scores[sub.id] : { class: 0, exam: 0 };
+                        return (parseFloat(sc.class)||0) + (parseFloat(sc.exam)||0);
+                    }).sort((a,b) => b-a);
+                    const rank = scores.indexOf(total) + 1;
+                    const suffix = rank === 1 ? 'st' : rank === 2 ? 'nd' : rank === 3 ? 'rd' : 'th';
+
+                    marksRows += `
+                        <tr>
+                            <td style="${tdStyle} text-align: left;">${sub.name}</td>
+                            <td style="${tdStyle} text-align: center;">${score.class}</td>
+                            <td style="${tdStyle} text-align: center;">${score.exam}</td>
+                            <td style="${tdStyle} text-align: center; font-weight: bold;">${total}</td>
+                            <td style="${tdStyle} text-align: center;">${getGrade(total)}</td>
+                            <td style="${tdStyle} text-align: center;">${rank}${suffix}</td>
+                            <td style="${tdStyle} text-align: left; font-size: 0.75rem; font-style: italic;">${getAutoRemark(total)}</td>
+                        </tr>
+                    `;
+                }
+            });
+
+            const autoVals = calculateAutoValues(student, currentTerm);
+
+            let psychomotorHTML = '';
+            if(isPreSchool) {
+                let items = '';
+                psychomotorSkills.forEach(skill => {
+                    const val = (termData.psychomotor && termData.psychomotor[skill]) ? termData.psychomotor[skill] : autoVals.psychoVal;
+                    items += `<div class="flex justify-between border-b border-dotted border-slate-300 pb-1"><span>${skill}:</span> <span class="font-bold">${val}</span></div>`;
+                });
+                psychomotorHTML = `
+                    <div class="mb-4">
+                        <h3 class="font-bold text-sm mb-2 border-b border-slate-300">Psychomotor Development</h3>
+                        <div class="grid grid-cols-2 gap-x-8 gap-y-1 text-sm">${items}</div>
+                    </div>`;
+            }
+
+            const ctRemark = termData.remarks?.ct || autoVals.ctRemark;
+            const htRemark = termData.remarks?.ht || autoVals.htRemark;
+            const logoSrc = db.settings.schoolLogo || window.defaultLogoData;
+
+            return `
+                <div class="report-page bg-white relative">
+                  <div style="border: 1pt solid black; padding: 20px; box-sizing: border-box; min-height: 270mm;">
+                    <div class="border-b-2 border-brand-blue pb-2 mb-2 flex gap-4 items-center justify-center">
+                        <div class="w-24 h-24 flex items-center justify-center">
+                            <img src="${logoSrc}" class="w-full h-full object-contain" alt="School Logo">
+                        </div>
+                        <div class="text-center">
+                            <h1 class="text-2xl font-bold text-brand-blue font-serif">GOD'S DUNAMIS SCHOOL</h1>
+                            <p class="text-brand-gold font-bold italic text-sm">"Jesus is our Rock"</p>
+                            <p class="text-xs mt-1">Behind Dangme West Hospital, Shai Osudoku district, Dodowa</p>
+                            <p class="text-xs">Tel: 0243320797 / 0245269554</p>
+                            <div class="mt-1 bg-brand-blue text-white px-4 py-0.5 rounded-full text-xs font-bold inline-block">TERMINAL REPORT CARD</div>
+                            <p class="text-sm mt-1 uppercase font-bold">${currentTerm} Academic Report</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 text-sm mb-4 border border-slate-300 p-2 rounded">
+                        <p><strong>Name:</strong> ${student.name}</p>
+                        <p><strong>Class:</strong> ${className}</p>
+                        <p><strong>No. on Roll:</strong> ${rollCount}</p>
+                        <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
+                    </div>
+
+                    <table class="w-full text-sm border-collapse mb-4" style="border: 1pt solid black;">
+                        <thead>${marksTableHead}</thead>
+                        <tbody>${marksRows}</tbody>
+                    </table>
+
+                    ${psychomotorHTML}
+
+                    <div class="grid grid-cols-2 gap-4 text-sm mb-4 border border-slate-300 p-2 rounded bg-slate-50">
+                        <div>
+                            <p class="mb-1"><strong class="text-brand-blue">Attendance</strong></p>
+                            <p>No. of times School Opened: <span class="font-bold">${db.settings.daysOpened || '-'}</span></p>
+                            <p>No. of times Present: <span class="font-bold">${termData.attendance?.present || '-'}</span></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="mb-1"><strong class="text-brand-blue">Term Dates</strong></p>
+                            <p>Vacation Date: <span class="font-bold">${db.settings.vacationDate || '-'}</span></p>
+                            <p>Resumption Date: <span class="font-bold">${db.settings.resumptionDate || '-'}</span></p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 space-y-2 text-sm">
+                        <div class="border border-slate-300 p-2 rounded">
+                            <p class="font-bold text-brand-blue">Class Teacher's Remark:</p>
+                            <p class="italic mt-1">${ctRemark}</p>
+                        </div>
+                        <div class="border border-slate-300 p-2 rounded">
+                            <p class="font-bold text-brand-blue">Head Teacher's Remark:</p>
+                            <p class="italic mt-1">${htRemark}</p>
+                        </div>
+                        <div class="flex justify-between items-end mt-8 px-8">
+                            <div class="text-center w-40">
+                                <div class="border-b border-black mb-1"></div>
+                                <p class="text-xs">Class Teacher's Signature</p>
+                            </div>
+                            <div class="text-center w-40">
+                                <div class="border-b border-black mb-1"></div>
+                                <p class="text-xs">Head Teacher's Signature</p>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            `;
+        }
+
+        function printSingleReport() {
+            const student = db.students.find(s => s.id === currentStudentId);
+            const html = generateReportHTML(student);
+            const printArea = document.getElementById('report-card-print-area');
+            
+            printArea.innerHTML = html;
+            printArea.classList.remove('hidden');
+            
+            setTimeout(() => {
+                window.print();
+                setTimeout(() => {
+                    printArea.classList.add('hidden');
+                }, 1000); 
+            }, 100);
+        }
+
+        function printBatchReports() {
+            let targetClassId;
+            if (currentUser.role === 'teacher') targetClassId = currentUser.classId;
+            else if (currentUser.role === 'admin') targetClassId = adminSelectedClassId;
+
+            if (!targetClassId) {
+                alert("Please select a class first.");
+                return;
+            }
+
+            const students = db.students.filter(s => s.classId === targetClassId && s.enrolledTerms.includes(db.settings.currentTerm));
+            if (students.length === 0) {
+                alert("No students in this class to print for the selected term.");
+                return;
+            }
+
+            let fullHTML = '';
+            students.forEach(student => {
+                fullHTML += generateReportHTML(student);
+            });
+
+            const printArea = document.getElementById('report-card-print-area');
+            printArea.innerHTML = fullHTML;
+            printArea.classList.remove('hidden');
+
+            setTimeout(() => {
+                window.print();
+                setTimeout(() => {
+                    printArea.classList.add('hidden');
+                }, 1000); 
+            }, 100);
+        }
+
+        function printBroadSheet() {
+            let targetClassId;
+            if (currentUser.role === 'teacher') targetClassId = currentUser.classId;
+            else if (currentUser.role === 'admin') targetClassId = adminSelectedClassId;
+
+            if (!targetClassId) {
+                alert("Please select a class first.");
+                return;
+            }
+
+            const currentTerm = db.settings.currentTerm;
+            const students = db.students.filter(s => s.classId === targetClassId && s.enrolledTerms.includes(db.settings.currentTerm));
+            if (students.length === 0) {
+                alert("No students in this class to print for the selected term.");
+                return;
+            }
+
+            const classObj = db.classes.find(c => c.id === targetClassId);
+            const className = classObj.name;
+            const assignedSubjectIds = classObj.subjects || db.subjects.map(s => s.id);
+            const applicableSubjects = db.subjects.filter(s => assignedSubjectIds.includes(s.id));
+
+            const sortedStudents = students.map(student => {
+                const termData = getTermData(student, currentTerm);
+                let overallTotal = 0;
+                const subjectTotals = {};
+                applicableSubjects.forEach(sub => {
+                    const score = (termData.scores && termData.scores[sub.id]) ? termData.scores[sub.id] : { class: 0, exam: 0 };
+                    const total = (parseFloat(score.class) || 0) + (parseFloat(score.exam) || 0);
+                    subjectTotals[sub.id] = total;
+                    overallTotal += total;
+                });
+                return { ...student, overallTotal, subjectTotals };
+            }).sort((a, b) => b.overallTotal - a.overallTotal);
+
+            const tdStyle = 'border: 1pt solid black; padding: 6px; font-size: 11px;';
+            
+            let marksTableHead = `
+                <tr class="bg-slate-200">
+                    <th style="${tdStyle} width: 40px; text-align: center;">Pos</th>
+                    <th style="${tdStyle} text-align: left;">Student Name</th>
+            `;
+            applicableSubjects.forEach(sub => {
+                marksTableHead += `<th style="${tdStyle} text-align: center;">${sub.name}</th>`;
+            });
+            marksTableHead += `<th style="${tdStyle} text-align: center; font-weight: bold;">Overall<br>Total</th></tr>`;
+
+            let marksRows = '';
+            sortedStudents.forEach((student, index) => {
+                let pos = index + 1;
+                let suffix = pos === 1 ? 'st' : pos === 2 ? 'nd' : pos === 3 ? 'rd' : 'th';
+                marksRows += `
+                    <tr>
+                        <td style="${tdStyle} text-align: center;">${pos}${suffix}</td>
+                        <td style="${tdStyle} text-align: left; font-weight: bold;">${student.name}</td>
+                `;
+                applicableSubjects.forEach(sub => {
+                    marksRows += `<td style="${tdStyle} text-align: center;">${student.subjectTotals[sub.id]}</td>`;
+                });
+                marksRows += `<td style="${tdStyle} text-align: center; font-weight: bold; background-color: #f8fafc;">${student.overallTotal}</td></tr>`;
+            });
+
+            const logoSrc = db.settings.schoolLogo || window.defaultLogoData;
+
+            const html = `
+                <div class="broad-sheet-page bg-white relative pb-8">
+                    <div class="text-center mb-6 border-b-2 border-brand-blue pb-4 flex flex-col items-center">
+                        <img src="${logoSrc}" class="w-16 h-16 object-contain mb-2" alt="School Logo">
+                        <h1 class="text-2xl font-bold text-brand-blue font-serif">GOD'S DUNAMIS SCHOOL</h1>
+                        <h2 class="text-xl font-bold mt-1 uppercase">Class Broad Sheet - ${className}</h2>
+                        <p class="text-sm mt-1 font-bold">Term: ${currentTerm} | Total Students: ${students.length}</p>
+                    </div>
+                    <div class="w-full">
+                        <table class="w-full border-collapse" style="border: 1pt solid black;">
+                            <thead>${marksTableHead}</thead>
+                            <tbody>${marksRows}</tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+
+            const printArea = document.getElementById('report-card-print-area');
+            printArea.innerHTML = html;
+            printArea.classList.remove('hidden');
+
+            setTimeout(() => {
+                window.print();
+                setTimeout(() => {
+                    printArea.classList.add('hidden');
+                }, 1000); 
+            }, 300);
+        }
+
+        // --- NEW: COMPARE TERMS FEATURE ---
+        function getTermTotal(student, term) {
+            const termData = getTermData(student, term);
+            if(!termData.scores) return 0;
+            let total = 0;
+            Object.values(termData.scores).forEach(score => {
+                total += (parseFloat(score.class) || 0) + (parseFloat(score.exam) || 0);
+            });
+            return total;
+        }
+
+        function openTermComparison() {
+            let targetClassId = currentUser.role === 'teacher' ? currentUser.classId : adminSelectedClassId;
+            if (!targetClassId) { alert("Please select a class first."); return; }
+
+            const classObj = db.classes.find(c => c.id === targetClassId);
+            const students = db.students.filter(s => s.classId === targetClassId);
+            
+            document.getElementById('compare-terms-class-name').innerText = classObj.name;
+
+            if (students.length === 0) {
+                document.getElementById('compare-terms-table-container').innerHTML = '<p class="text-center text-slate-500 py-8">No students found in this class.</p>';
+            } else {
+                let html = '<table class="w-full text-sm border-collapse bg-white"><thead class="bg-slate-200 sticky top-0"><tr><th class="p-3 border text-left">Student Name</th><th class="p-3 border text-center">Term 1</th><th class="p-3 border text-center">Term 2</th><th class="p-3 border text-center">Term 3</th><th class="p-3 border text-center bg-slate-300">Cumulative</th></tr></thead><tbody>';
+
+                const sortedData = students.map(student => {
+                    const t1 = getTermTotal(student, 'Term 1');
+                    const t2 = getTermTotal(student, 'Term 2');
+                    const t3 = getTermTotal(student, 'Term 3');
+                    const cum = t1 + t2 + t3;
+                    return { student, t1, t2, t3, cum };
+                }).sort((a,b) => b.cum - a.cum);
+
+                sortedData.forEach(row => {
+                    html += `<tr>
+                                <td class="p-2 border font-bold">${row.student.name}</td>
+                                <td class="p-2 border text-center">${row.t1}</td>
+                                <td class="p-2 border text-center">${row.t2}</td>
+                                <td class="p-2 border text-center">${row.t3}</td>
+                                <td class="p-2 border text-center font-bold bg-slate-50">${row.cum}</td>
+                            </tr>`;
+                });
+
+                html += '</tbody></table>';
+                document.getElementById('compare-terms-table-container').innerHTML = html;
+            }
+            document.getElementById('compare-terms-modal').classList.remove('hidden');
+        }
+
+        function closeTermComparison() {
+            document.getElementById('compare-terms-modal').classList.add('hidden');
+        }
+
+        function printTermComparison() {
+            let targetClassId = currentUser.role === 'teacher' ? currentUser.classId : adminSelectedClassId;
+            if (!targetClassId) return;
+
+            const classObj = db.classes.find(c => c.id === targetClassId);
+            const students = db.students.filter(s => s.classId === targetClassId);
+
+            const tdStyle = 'border: 1pt solid black; padding: 6px; font-size: 12px;';
+            let marksTableHead = `
+                <tr class="bg-slate-200">
+                    <th style="${tdStyle} width: 40px; text-align: center;">Pos</th>
+                    <th style="${tdStyle} text-align: left;">Student Name</th>
+                    <th style="${tdStyle} text-align: center;">Term 1 Total</th>
+                    <th style="${tdStyle} text-align: center;">Term 2 Total</th>
+                    <th style="${tdStyle} text-align: center;">Term 3 Total</th>
+                    <th style="${tdStyle} text-align: center; font-weight: bold; background-color: #e2e8f0;">Cumulative</th>
+                </tr>
+            `;
+
+            const sortedData = students.map(student => {
+                const t1 = getTermTotal(student, 'Term 1');
+                const t2 = getTermTotal(student, 'Term 2');
+                const t3 = getTermTotal(student, 'Term 3');
+                const cum = t1 + t2 + t3;
+                return { student, t1, t2, t3, cum };
+            }).sort((a,b) => b.cum - a.cum);
+
+            let marksRows = '';
+            sortedData.forEach((row, index) => {
+                let pos = index + 1;
+                let suffix = pos === 1 ? 'st' : pos === 2 ? 'nd' : pos === 3 ? 'rd' : 'th';
+                marksRows += `
+                    <tr>
+                        <td style="${tdStyle} text-align: center;">${pos}${suffix}</td>
+                        <td style="${tdStyle} text-align: left; font-weight: bold;">${row.student.name}</td>
+                        <td style="${tdStyle} text-align: center;">${row.t1}</td>
+                        <td style="${tdStyle} text-align: center;">${row.t2}</td>
+                        <td style="${tdStyle} text-align: center;">${row.t3}</td>
+                        <td style="${tdStyle} text-align: center; font-weight: bold; background-color: #f8fafc;">${row.cum}</td>
+                    </tr>
+                `;
+            });
+
+            const logoSrc = db.settings.schoolLogo || window.defaultLogoData;
+
+            const html = `
+                <div class="broad-sheet-page bg-white relative pb-8">
+                    <div class="text-center mb-6 border-b-2 border-brand-blue pb-4 flex flex-col items-center">
+                        <img src="${logoSrc}" class="w-16 h-16 object-contain mb-2" alt="School Logo">
+                        <h1 class="text-2xl font-bold text-brand-blue font-serif">GOD'S DUNAMIS SCHOOL</h1>
+                        <h2 class="text-xl font-bold mt-1 uppercase">Term Comparison Sheet - ${classObj.name}</h2>
+                        <p class="text-sm mt-1 font-bold">Academic Year Report | Total Students: ${students.length}</p>
+                    </div>
+                    <div class="w-full">
+                        <table class="w-full border-collapse" style="border: 1pt solid black;">
+                            <thead>${marksTableHead}</thead>
+                            <tbody>${marksRows}</tbody>
+                        </table>
+                    </div>
+                </div>
+            `;
+
+            const printArea = document.getElementById('report-card-print-area');
+            printArea.innerHTML = html;
+            printArea.classList.remove('hidden');
+
+            setTimeout(() => {
+                window.print();
+                setTimeout(() => {
+                    printArea.classList.add('hidden');
+                }, 1000); 
+            }, 300);
+        }
+
+        // PDF Downloads
+        function downloadSinglePDF() {
+            const student = db.students.find(s => s.id === currentStudentId);
+            const html = generateReportHTML(student);
+            const element = document.createElement('div');
+            element.innerHTML = html;
+            
+            const opt = {
+                margin: 0.5,
+                filename: `Report_${student.name.replace(/\s+/g, '_')}_${db.settings.currentTerm}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+        }
+
+        function downloadBatchPDF() {
+            let targetClassId;
+
+            if (currentUser.role === 'teacher') {
+                targetClassId = currentUser.classId;
+            } else if (currentUser.role === 'admin') {
+                targetClassId = adminSelectedClassId;
+            }
+
+            if (!targetClassId) {
+                alert("Please select a class first.");
+                return;
+            }
+
+            const students = db.students.filter(s => s.classId === targetClassId && s.enrolledTerms.includes(db.settings.currentTerm));
+            if (students.length === 0) {
+                alert("No students in this class to download.");
+                return;
+            }
+
+            let fullHTML = '';
+            students.forEach(student => {
+                fullHTML += `<div class="html2pdf__page-break"></div>` + generateReportHTML(student);
+            });
+
+            const element = document.createElement('div');
+            element.innerHTML = fullHTML;
+
+            if (element.firstChild && element.firstChild.className === 'html2pdf__page-break') {
+                element.removeChild(element.firstChild);
+            }
+
+            const opt = {
+                margin: 0.5,
+                filename: `Class_Reports_${db.settings.currentTerm}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            };
+
+            html2pdf().set(opt).from(element).save();
+        }
+    </script>
+</body>
+</html>
